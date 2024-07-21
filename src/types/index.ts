@@ -19,12 +19,12 @@ export type GeneralComponent = {
 
 export type GeneralFormFieldComponent = GeneralComponent & {
   label?: string;
-  description?: string;
   disabled?: boolean;
 };
 
 export type GeneralTextFieldComponent = GeneralFormFieldComponent & {
   value?: string;
+  placeholder?: string;
 };
 
 export type SelectionOption = {
@@ -55,6 +55,7 @@ export type TextareaFieldComponent = GeneralTextFieldComponent & {
 
 export type SelectFieldComponent = GeneralSelectionFieldComponent & {
   type: ComponentType.SelectField;
+  placeholder?: string;
 };
 
 export type CheckboxFieldComponent = GeneralSelectionFieldComponent & {

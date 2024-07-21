@@ -1,6 +1,6 @@
 import { $schema, setFullSchemaEvent } from '@services/index';
 import { ComponentType, Schema, Component } from '@types';
-import { FC, ReactNode, memo, useLayoutEffect } from 'react';
+import { FC, ReactNode, memo, useEffect } from 'react';
 import { useUnit } from 'effector-react';
 import {
   Button,
@@ -50,7 +50,7 @@ export const Generator: FC<GeneratorProps> = memo(
   ({ schema: initialSchema }) => {
     const [schema] = useUnit([$schema]);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
       setFullSchemaEvent(initialSchema);
     }, [initialSchema]);
 

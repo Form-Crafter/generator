@@ -1,11 +1,16 @@
 import { FC, memo, useCallback } from 'react';
-import { Checkbox as CheckboxBase, FormControlLabel } from '@mui/material';
+import {
+  Box,
+  Checkbox as CheckboxBase,
+  FormControlLabel,
+  Typography,
+} from '@mui/material';
 import { CheckboxFieldComponent, SelectionOption } from '@types';
 
 export type CheckboxProps = CheckboxFieldComponent;
 
 export const Checkbox: FC<CheckboxProps> = memo(
-  ({ options, selectedOptionsValues }) => {
+  ({ options, selectedOptionsValues, label, disabled }) => {
     const isChecked = useCallback(
       ({ value }: Pick<SelectionOption, 'value'>) =>
         selectedOptionsValues?.length
@@ -15,21 +20,29 @@ export const Checkbox: FC<CheckboxProps> = memo(
     );
 
     return (
-      <div>
-        {options.map((option) => (
-          <FormControlLabel
-            key={option.value}
-            control={
-              <CheckboxBase
-                checked={isChecked(option)}
-                name={option.value}
-                value={option.value}
-              />
-            }
-            label={option.label}
-          />
-        ))}
-      </div>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {label && (
+          <Typography variant="h6" gutterBottom>
+            {label}
+          </Typography>
+        )}
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          {options.map((option) => (
+            <FormControlLabel
+              key={option.value}
+              control={
+                <CheckboxBase
+                  checked={isChecked(option)}
+                  name={option.value}
+                  value={option.value}
+                  disabled={disabled}
+                />
+              }
+              label={option.label}
+            />
+          ))}
+        </Box>
+      </Box>
     );
   }
 );

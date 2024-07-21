@@ -7,10 +7,10 @@ export type GroupProps = GroupComponent & {
 
 export const Group: FC<GroupProps> = memo(({ renderComponent, components }) => {
   return (
-    <div>
+    <fieldset>
       {components.map((component) => (
         <div key={component.id}>{renderComponent(component)}</div>
       ))}
-    </div>
+    </fieldset>
   );
 });
