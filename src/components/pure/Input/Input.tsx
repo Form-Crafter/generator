@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { FormControlLabel, Input as InputBase } from '@mui/material';
+import { TextField } from '@mui/material';
 import { InputFieldComponent } from '@types';
 
 export type InputProps = InputFieldComponent;
@@ -7,15 +7,12 @@ export type InputProps = InputFieldComponent;
 export const Input: FC<InputProps> = memo(
   ({ value, placeholder, label, disabled }) => {
     return (
-      <FormControlLabel
-        control={
-          <InputBase
-            value={value}
-            disabled={disabled}
-            placeholder={placeholder}
-          />
-        }
+      <TextField
+        value={value}
+        disabled={disabled}
         label={label}
+        placeholder={placeholder}
+        fullWidth
       />
     );
   }

@@ -1,6 +1,7 @@
 import { ComponentType, Schema } from '@types';
 
 export const medicalQuestionnaireSchema: Schema = {
+  id: '1',
   version: '1.0',
   components: [
     {
@@ -10,6 +11,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Full Name',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'email5',
@@ -18,6 +20,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Email',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'phone5',
@@ -26,6 +29,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Phone Number',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'dob1',
@@ -35,6 +39,7 @@ export const medicalQuestionnaireSchema: Schema = {
       disabled: false,
       value: '',
       customProperties: { type: 'date' },
+      layout: { col: { default: 24 } },
     },
     {
       id: 'gender2',
@@ -48,6 +53,7 @@ export const medicalQuestionnaireSchema: Schema = {
         { label: 'Other', value: 'other' },
       ],
       selectedOptionsValues: [],
+      layout: { col: { default: 24 } },
     },
     {
       id: 'address2',
@@ -56,6 +62,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Address',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'medicalHistory1',
@@ -64,6 +71,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Medical History',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'allergies1',
@@ -78,6 +86,7 @@ export const medicalQuestionnaireSchema: Schema = {
         { label: 'Other', value: 'other' },
       ],
       selectedOptionsValues: [],
+      layout: { col: { default: 24 } },
     },
     {
       id: 'medications1',
@@ -86,6 +95,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Current Medications',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'insuranceProvider1',
@@ -94,6 +104,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Insurance Provider',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'policyNumber1',
@@ -102,6 +113,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Policy Number',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'emergencyContact1',
@@ -110,6 +122,7 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Emergency Contact',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'emergencyContactPhone1',
@@ -118,17 +131,20 @@ export const medicalQuestionnaireSchema: Schema = {
       label: 'Emergency Contact Phone Number',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'submit5',
       formKey: 'submit',
       type: ComponentType.Button,
       text: 'Submit',
+      layout: { col: { default: 24 } },
     },
   ],
 };
 
 export const employeeAnnualReviewSchema: Schema = {
+  id: '2',
   version: '1.0',
   components: [
     {
@@ -139,6 +155,7 @@ export const employeeAnnualReviewSchema: Schema = {
       placeholder: 'Your name',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'email6',
@@ -148,6 +165,7 @@ export const employeeAnnualReviewSchema: Schema = {
       placeholder: 'example@gmail.com',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'department1',
@@ -157,6 +175,7 @@ export const employeeAnnualReviewSchema: Schema = {
       placeholder: 'Department name',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'reviewPeriod1',
@@ -166,6 +185,7 @@ export const employeeAnnualReviewSchema: Schema = {
       disabled: false,
       value: '',
       customProperties: { type: 'date' },
+      layout: { col: { default: 24 } },
     },
     {
       id: 'performanceRating1',
@@ -180,6 +200,7 @@ export const employeeAnnualReviewSchema: Schema = {
         { label: 'Poor', value: 'poor' },
       ],
       selectedOptionsValues: [],
+      layout: { col: { default: 24 } },
     },
     {
       id: 'goalsAchieved1',
@@ -193,6 +214,7 @@ export const employeeAnnualReviewSchema: Schema = {
         { label: 'Improved skills', value: 'skills' },
       ],
       selectedOptionsValues: [],
+      layout: { col: { default: 24 } },
     },
     {
       id: 'areasForImprovement1',
@@ -201,6 +223,7 @@ export const employeeAnnualReviewSchema: Schema = {
       label: 'Areas for Improvement',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'trainingRequired1',
@@ -209,6 +232,7 @@ export const employeeAnnualReviewSchema: Schema = {
       label: 'Training Required',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'additionalComments1',
@@ -217,6 +241,7 @@ export const employeeAnnualReviewSchema: Schema = {
       label: 'Additional Comments',
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'reviewerName1',
@@ -226,23 +251,31 @@ export const employeeAnnualReviewSchema: Schema = {
       placeholder: "Enter the reviewer's name",
       disabled: false,
       value: '',
+      layout: { col: { default: 24 } },
     },
     {
       id: 'submit6',
       formKey: 'submit',
       type: ComponentType.Button,
       text: 'Submit Review',
+      layout: { col: { default: 24 } },
     },
   ],
 };
 
 export const personalSchema: Schema = {
+  id: '3',
   version: '1.0',
   components: [
     {
       id: '1',
       formKey: 'personal-info',
       type: ComponentType.Group,
+      layout: {
+        col: {
+          default: 24,
+        },
+      },
       components: [
         {
           id: '1-1',
@@ -251,6 +284,11 @@ export const personalSchema: Schema = {
           label: 'First Name',
           value: '',
           placeholder: 'Enter your first name',
+          layout: {
+            col: {
+              default: 12,
+            },
+          },
         },
         {
           id: '1-2',
@@ -259,6 +297,11 @@ export const personalSchema: Schema = {
           label: 'Last Name',
           value: '',
           placeholder: 'Enter your last name',
+          layout: {
+            col: {
+              default: 12,
+            },
+          },
         },
         {
           id: '1-3',
@@ -267,6 +310,11 @@ export const personalSchema: Schema = {
           label: 'Email',
           value: '',
           placeholder: 'Enter your email',
+          layout: {
+            col: {
+              default: 24,
+            },
+          },
         },
       ],
     },
@@ -274,6 +322,11 @@ export const personalSchema: Schema = {
       id: '2',
       formKey: 'preferences',
       type: ComponentType.Group,
+      layout: {
+        col: {
+          default: 24,
+        },
+      },
       components: [
         {
           id: '2-1',
@@ -287,6 +340,11 @@ export const personalSchema: Schema = {
           ],
           selectedOptionsValues: [],
           placeholder: 'Select your favorite color',
+          layout: {
+            col: {
+              default: 24,
+            },
+          },
         },
         {
           id: '2-2',
@@ -298,6 +356,27 @@ export const personalSchema: Schema = {
             { label: 'No', value: 'no' },
           ],
           selectedOptionsValues: [],
+          layout: {
+            col: {
+              default: 24,
+            },
+          },
+        },
+        {
+          id: '2-3',
+          formKey: 'subscribe',
+          type: ComponentType.RadioField,
+          label: 'Your sex',
+          options: [
+            { label: 'Male', value: 'male' },
+            { label: 'Female', value: 'female' },
+          ],
+          selectedOptionsValues: [],
+          layout: {
+            col: {
+              default: 24,
+            },
+          },
         },
       ],
     },
@@ -308,6 +387,11 @@ export const personalSchema: Schema = {
       label: 'Phone Number',
       value: '',
       placeholder: 'Enter your phone number',
+      layout: {
+        col: {
+          default: 24,
+        },
+      },
     },
     {
       id: '4',
@@ -316,12 +400,22 @@ export const personalSchema: Schema = {
       label: 'Address',
       value: '',
       placeholder: 'Enter your address',
+      layout: {
+        col: {
+          default: 24,
+        },
+      },
     },
     {
       id: '5',
       formKey: 'submit',
       type: ComponentType.Button,
       text: 'Submit',
+      layout: {
+        col: {
+          default: 24,
+        },
+      },
     },
   ],
 };

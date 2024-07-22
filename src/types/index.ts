@@ -115,6 +115,7 @@ export type SchemaLayout = {
 };
 
 export type Schema = {
+  id: string;
   version: string;
   layout?: SchemaLayout;
   components: Component[];

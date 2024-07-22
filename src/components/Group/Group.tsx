@@ -1,16 +1,17 @@
-import { FC, memo, ReactNode } from 'react';
-import { GroupComponent, Component } from '@types';
+import { FC, memo } from 'react';
+import { GroupComponent } from '@types';
+import { RenderComponentProps } from '../RenderComponent';
+import { RenderComponentsGrid } from '../RenderComponentsGrid';
 
 export type GroupProps = GroupComponent & {
-  renderComponent: (component: Component) => ReactNode;
+  renderComponent: FC<RenderComponentProps>;
 };
 
 export const Group: FC<GroupProps> = memo(({ renderComponent, components }) => {
   return (
-    <fieldset>
-      {components.map((component) => (
-        <div key={component.id}>{renderComponent(component)}</div>
-      ))}
-    </fieldset>
+    <RenderComponentsGrid
+      renderComponent={renderComponent}
+      components={components}
+    />
   );
 });

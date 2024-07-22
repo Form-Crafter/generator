@@ -1,7 +1,5 @@
-import { $schema, setFullSchemaEvent } from '@services/index';
-import { ComponentType, Schema, Component } from '@types';
-import { FC, ReactNode, memo, useEffect } from 'react';
-import { useUnit } from 'effector-react';
+import { ComponentType, Component } from '@types';
+import { FC } from 'react';
 import {
   Button,
   Input,
@@ -13,9 +11,13 @@ import {
   Radio,
   Text,
   Group,
-} from './pure';
+} from '../pure';
 
-const renderComponent = (component: Component): ReactNode => {
+export type RenderComponentProps = {
+  component: Component;
+};
+
+export const RenderComponent: FC<RenderComponentProps> = ({ component }) => {
   switch (component.type) {
     case ComponentType.Button:
       return <Button {...component} />;
@@ -36,30 +38,8 @@ const renderComponent = (component: Component): ReactNode => {
     case ComponentType.Text:
       return <Text {...component} />;
     case ComponentType.Group:
-      return <Group renderComponent={renderComponent} {...component} />;
+      return <Group renderComponent={RenderComponent} {...component} />;
     default:
       return null;
   }
 };
-
-type GeneratorProps = {
-  schema: Schema;
-};
-
-export const Generator: FC<GeneratorProps> = memo(
-  ({ schema: initialSchema }) => {
-    const [schema] = useUnit([$schema]);
-
-    useEffect(() => {
-      setFullSchemaEvent(initialSchema);
-    }, [initialSchema]);
-
-    return (
-      <div>
-        {schema.components.map((component) => (
-          <div key={component.id}>{renderComponent(component)}</div>
-        ))}
-      </div>
-    );
-  }
-);

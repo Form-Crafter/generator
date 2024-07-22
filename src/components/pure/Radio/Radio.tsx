@@ -1,9 +1,10 @@
 import { FC, memo, useCallback } from 'react';
 import {
-  Radio as RadioBase,
-  FormControlLabel,
   Box,
-  Typography,
+  Radio as RadioBase,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
 } from '@mui/material';
 import { RadioFieldComponent, SelectionOption } from '@types';
 
@@ -20,12 +21,8 @@ export const Radio: FC<RadioProps> = memo(
     );
 
     return (
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        {label && (
-          <Typography variant="h6" gutterBottom>
-            {label}
-          </Typography>
-        )}
+      <FormControl fullWidth>
+        {label && <FormLabel>{label}</FormLabel>}
         <Box sx={{ display: 'flex', gap: 1 }}>
           {options.map((option) => (
             <FormControlLabel
@@ -42,7 +39,7 @@ export const Radio: FC<RadioProps> = memo(
             />
           ))}
         </Box>
-      </Box>
+      </FormControl>
     );
   }
 );

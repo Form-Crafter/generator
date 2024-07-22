@@ -2,8 +2,9 @@ import { FC, memo, useCallback } from 'react';
 import {
   Box,
   Checkbox as CheckboxBase,
+  FormControl,
   FormControlLabel,
-  Typography,
+  FormLabel,
 } from '@mui/material';
 import { CheckboxFieldComponent, SelectionOption } from '@types';
 
@@ -20,12 +21,8 @@ export const Checkbox: FC<CheckboxProps> = memo(
     );
 
     return (
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        {label && (
-          <Typography variant="h6" gutterBottom>
-            {label}
-          </Typography>
-        )}
+      <FormControl fullWidth>
+        {label && <FormLabel>{label}</FormLabel>}
         <Box sx={{ display: 'flex', gap: 1 }}>
           {options.map((option) => (
             <FormControlLabel
@@ -42,7 +39,7 @@ export const Checkbox: FC<CheckboxProps> = memo(
             />
           ))}
         </Box>
-      </Box>
+      </FormControl>
     );
   }
 );

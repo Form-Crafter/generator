@@ -1,0 +1,13 @@
+@import '@styles/variables'
+    
+@mixin responsiveGridColumn($breakpoint, $data-attr)
+  @media (max-width: $breakpoint)
+    &[data-#{$data-attr}]
+      grid-column: span attr(data-#{$data-attr})
+
+.root
+  +responsiveGridColumn($breakpointXxl, 'xxl')
+  +responsiveGridColumn($breakpointXl, 'xl')
+  +responsiveGridColumn($breakpointLg, 'lg')
+  +responsiveGridColumn($breakpointMd, 'md')
+  +responsiveGridColumn($breakpointSm, 'sm')
