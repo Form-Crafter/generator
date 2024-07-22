@@ -11,9 +11,25 @@ export enum ComponentType {
   Group = 'group',
 }
 
+export type ResponsiveSizes<T> = {
+  default: T;
+  xxl?: T;
+  xl?: T;
+  lg?: T;
+  md?: T;
+  sm?: T;
+};
+
+export type ColSpan = 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 22 | 24;
+
+export type ComponentLayout = {
+  col: ResponsiveSizes<ColSpan>;
+};
+
 export type GeneralComponent = {
   id: string;
   formKey: string;
+  layout: ComponentLayout;
   customProperties?: Record<string, string>;
 };
 
@@ -93,7 +109,13 @@ export type Component =
   | ButtonComponent
   | GroupComponent;
 
+export type SchemaLayout = {
+  rowsSpanPx?: ResponsiveSizes<number>;
+  colsSpanPx?: ResponsiveSizes<number>;
+};
+
 export type Schema = {
   version: string;
+  layout?: SchemaLayout;
   components: Component[];
 };
