@@ -1,13 +1,40 @@
 @import '@styles/variables'
-    
-@mixin responsiveGridColumn($breakpoint, $data-attr)
+
+@mixin responsiveFlexItem($breakpoint, $var-name)
   @media (max-width: $breakpoint)
-    &[data-#{$data-attr}]
-      grid-column: span attr(data-#{$data-attr})
+    flex: 0 0 calc(var(--#{$var-name}) * (100% / 24))
+
+@mixin responsiveHorizontalGap($breakpoint, $var-name)
+  @media (max-width: $breakpoint)
+    padding: 0 calc(var(--#{$var-name}) / 2)
+
+@mixin responsiveVerticalGap($breakpoint, $var-name)
+  @media (max-width: $breakpoint)
+    margin: 0 0 var(--#{$var-name})
 
 .root
-  +responsiveGridColumn($breakpointXxl, 'xxl')
-  +responsiveGridColumn($breakpointXl, 'xl')
-  +responsiveGridColumn($breakpointLg, 'lg')
-  +responsiveGridColumn($breakpointMd, 'md')
-  +responsiveGridColumn($breakpointSm, 'sm')
+  flex: 0 0 calc(var(--colDefault) * (100% / 24)),
+  margin: 0 0 var(--schemaLayoutRowsSpanDefault),
+  padding: 0 calc(var(--schemaLayoutColsSpanDefault) / 2),
+
+  +responsiveFlexItem($breakpointXxl, 'colXxl')
+  +responsiveFlexItem($breakpointXl, 'colXl')
+  +responsiveFlexItem($breakpointLg, 'colLg')
+  +responsiveFlexItem($breakpointMd, 'colMd')
+  +responsiveFlexItem($breakpointSm, 'colSm')
+
+  +responsiveHorizontalGap($breakpointXxl, 'schemaLayoutColsSpanXxl')
+  +responsiveHorizontalGap($breakpointXl, 'schemaLayoutColsSpanXl')
+  +responsiveHorizontalGap($breakpointLg, 'schemaLayoutColsSpanLg')
+  +responsiveHorizontalGap($breakpointMd, 'schemaLayoutColsSpanMd')
+  +responsiveHorizontalGap($breakpointSm, 'schemaLayoutColsSpanSm')
+
+  +responsiveVerticalGap($breakpointXxl, 'schemaLayoutRowsSpanXxl')
+  +responsiveVerticalGap($breakpointXl, 'schemaLayoutRowsSpanXl')
+  +responsiveVerticalGap($breakpointLg, 'schemaLayoutRowsSpanLg')
+  +responsiveVerticalGap($breakpointMd, 'schemaLayoutRowsSpanMd')
+  +responsiveVerticalGap($breakpointSm, 'schemaLayoutRowsSpanSm')
+
+.withoutVerticalGap
+  margin: 0
+  

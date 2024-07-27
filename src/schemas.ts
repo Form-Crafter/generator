@@ -266,6 +266,10 @@ export const employeeAnnualReviewSchema: Schema = {
 export const personalSchema: Schema = {
   id: '3',
   version: '1.0',
+  layout: {
+    colsSpanPx: { default: 20, xxl: 40 },
+    rowsSpanPx: { default: 16 },
+  },
   components: [
     {
       id: '1',
@@ -286,7 +290,8 @@ export const personalSchema: Schema = {
           placeholder: 'Enter your first name',
           layout: {
             col: {
-              default: 12,
+              default: 5,
+              xxl: 12,
             },
           },
         },
@@ -299,7 +304,8 @@ export const personalSchema: Schema = {
           placeholder: 'Enter your last name',
           layout: {
             col: {
-              default: 12,
+              default: 10,
+              xxl: 12,
             },
           },
         },
@@ -312,7 +318,8 @@ export const personalSchema: Schema = {
           placeholder: 'Enter your email',
           layout: {
             col: {
-              default: 24,
+              default: 9,
+              sm: 2,
             },
           },
         },
@@ -395,11 +402,11 @@ export const personalSchema: Schema = {
     },
     {
       id: '4',
-      formKey: 'address',
+      formKey: 'article',
       type: ComponentType.TextareaField,
-      label: 'Address',
+      label: 'Article',
       value: '',
-      placeholder: 'Enter your address',
+      placeholder: 'Enter your article',
       layout: {
         col: {
           default: 24,
