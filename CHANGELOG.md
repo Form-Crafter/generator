@@ -10,4 +10,8 @@
 
 ### Added
 
-1. ...
+1. Grid system
+
+### Updated
+
+1. Fix markup components
