@@ -4,8 +4,6 @@ import { Container, Box, Typography, Paper } from '@mui/material';
 import { personalSchema } from './schemas';
 import '@services/init.ts';
 
-
-
 export const App: FC = memo(() => {
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>

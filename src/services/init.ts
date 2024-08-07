@@ -1,3 +1,4 @@
+import './componentsMap/init';
 import { sample } from 'effector';
 import { $schema, setFullSchemaEvent } from '.';
 

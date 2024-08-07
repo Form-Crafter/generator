@@ -6,18 +6,23 @@ import {
   FormControlLabel,
   FormLabel,
 } from '@mui/material';
-import { CheckboxFieldComponent, SelectionOption } from '@types';
-
-export type CheckboxProps = CheckboxFieldComponent;
+import { CheckboxProps, SelectionOption } from '@types';
+import { toggleArrItem } from '@utils';
 
 export const Checkbox: FC<CheckboxProps> = memo(
-  ({ options, selectedOptionsValues, label, disabled }) => {
+  ({ options, value, label, disabled, onChangeOptions }) => {
     const isChecked = useCallback(
-      ({ value }: Pick<SelectionOption, 'value'>) =>
-        selectedOptionsValues?.length
-          ? selectedOptionsValues.includes(value)
-          : false,
-      [selectedOptionsValues]
+      (option: Pick<SelectionOption, 'value'>) =>
+        value?.length ? value.includes(option.value) : false,
+      [value]
+    );
+
+    const hanleChange = useCallback(
+      (valueToChange: SelectionOption['value']) => {
+        const finalValue = toggleArrItem(value || [], valueToChange);
+        onChangeOptions({ value: finalValue });
+      },
+      [value, onChangeOptions]
     );
 
     return (
@@ -33,6 +38,7 @@ export const Checkbox: FC<CheckboxProps> = memo(
                   name={option.value}
                   value={option.value}
                   disabled={disabled}
+                  onChange={() => hanleChange(option.value)}
                 />
               }
               label={option.label}

@@ -1,7 +1,5 @@
 import { FC, memo } from 'react';
-import { TextComponent } from '@types';
-
-export type TextProps = TextComponent;
+import { TextProps } from '@types';
 
 export const Text: FC<TextProps> = memo(({ text }) => {
   return <div>{text}</div>;

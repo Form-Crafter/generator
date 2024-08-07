@@ -1,11 +1,9 @@
 import { FC, memo } from 'react';
 import { TextField } from '@mui/material';
-import { EmailFieldComponent } from '@types';
-
-export type EmailProps = EmailFieldComponent;
+import { EmailProps } from '@types';
 
 export const Email: FC<EmailProps> = memo(
-  ({ value, placeholder, label, disabled }) => {
+  ({ value, placeholder, label, disabled, onChangeOptions }) => {
     return (
       <TextField
         value={value}
@@ -13,6 +11,7 @@ export const Email: FC<EmailProps> = memo(
         label={label}
         placeholder={placeholder}
         fullWidth
+        onChange={(e) => onChangeOptions({ value: e.target.value })}
       />
     );
   }

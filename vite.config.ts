@@ -9,6 +9,8 @@ export default defineConfig({
       '@types': '/src/types',
       '@services': '/src/services',
       '@styles': '/src/styles',
+      '@consts': '/src/consts',
+      '@hooks': '/src/hooks',
     },
   },
   plugins: [react()],

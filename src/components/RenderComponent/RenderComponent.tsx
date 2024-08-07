@@ -1,45 +1,28 @@
-import { ComponentType, Component } from '@types';
-import { FC } from 'react';
-import {
-  Button,
-  Input,
-  Phone,
-  Email,
-  Select,
-  Textarea,
-  Checkbox,
-  Radio,
-  Text,
-  Group,
-} from '../pure';
+import { $componentsMap } from '@services/componentsMap';
+import { ComponentSchema } from '@types';
+import { useUnit } from 'effector-react';
+import { FC, useMemo } from 'react';
 
 export type RenderComponentProps = {
-  component: Component;
+  componentSchema: ComponentSchema;
 };
 
-export const RenderComponent: FC<RenderComponentProps> = ({ component }) => {
-  switch (component.type) {
-    case ComponentType.Button:
-      return <Button {...component} />;
-    case ComponentType.InputField:
-      return <Input {...component} />;
-    case ComponentType.EmailField:
-      return <Email {...component} />;
-    case ComponentType.PhoneField:
-      return <Phone {...component} />;
-    case ComponentType.TextareaField:
-      return <Textarea {...component} />;
-    case ComponentType.SelectField:
-      return <Select {...component} />;
-    case ComponentType.CheckboxField:
-      return <Checkbox {...component} />;
-    case ComponentType.RadioField:
-      return <Radio {...component} />;
-    case ComponentType.Text:
-      return <Text {...component} />;
-    case ComponentType.Group:
-      return <Group renderComponent={RenderComponent} {...component} />;
-    default:
-      return null;
-  }
+// impl change data in store
+
+// TODO check renender pure compentns on change general structure
+
+export const RenderComponent: FC<RenderComponentProps> = ({
+  componentSchema,
+}) => {
+  const [componentsMap] = useUnit([$componentsMap]);
+  const Component = componentsMap[componentSchema.type];
+
+  const finalProps = useMemo(
+    () => ({
+      ...componentSchema,
+    }),
+    [componentSchema]
+  ) as Parameters<typeof Component>[0];
+
+  return <Component {...finalProps} />;
 };

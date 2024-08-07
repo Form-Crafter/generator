@@ -1,11 +1,9 @@
 import { FC, memo } from 'react';
 import { TextField } from '@mui/material';
-import { PhoneFieldComponent } from '@types';
-
-export type PhoneProps = PhoneFieldComponent;
+import { PhoneProps } from '@types';
 
 export const Phone: FC<PhoneProps> = memo(
-  ({ value, placeholder, label, disabled }) => {
+  ({ value, placeholder, label, disabled, onChangeOptions }) => {
     return (
       <TextField
         value={value}
@@ -13,6 +11,7 @@ export const Phone: FC<PhoneProps> = memo(
         label={label}
         placeholder={placeholder}
         fullWidth
+        onChange={(e) => onChangeOptions({ value: e.target.value })}
       />
     );
   }

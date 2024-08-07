@@ -28,7 +28,7 @@ export const WrapperComponent: FC<WrapperComponentProps> = memo(
     return (
       <div
         className={cn(styles.root, {
-          [styles.withoutVerticalGap]: componentType === ComponentType.Group,
+          [styles.withoutVerticalGap]: componentType === 'group',
         })}
         style={style}
       >

@@ -6,18 +6,14 @@ import {
   FormControlLabel,
   FormLabel,
 } from '@mui/material';
-import { RadioFieldComponent, SelectionOption } from '@types';
-
-export type RadioProps = RadioFieldComponent;
+import { RadioProps, SelectionOption } from '@types';
 
 export const Radio: FC<RadioProps> = memo(
-  ({ options, selectedOptionsValues, formKey, label, disabled }) => {
+  ({ options, value, formKey, label, disabled, onChangeOptions }) => {
     const isChecked = useCallback(
-      ({ value }: Pick<SelectionOption, 'value'>) =>
-        selectedOptionsValues?.length
-          ? selectedOptionsValues.includes(value)
-          : false,
-      [selectedOptionsValues]
+      (option: Pick<SelectionOption, 'value'>) =>
+        value?.length ? value.includes(option.value) : false,
+      [value]
     );
 
     return (
@@ -33,6 +29,7 @@ export const Radio: FC<RadioProps> = memo(
                   name={formKey}
                   value={option.value}
                   disabled={disabled}
+                  onChange={() => onChangeOptions({ value: option.value })}
                 />
               }
               label={option.label}

@@ -1,7 +1,6 @@
 export * from './Button';
 export * from './Checkbox';
 export * from './Email';
-export * from '../Group';
 export * from './Input';
 export * from './Phone';
 export * from './Radio';

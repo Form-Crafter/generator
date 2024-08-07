@@ -1,17 +1,16 @@
 import { FC, memo } from 'react';
 import { TextField } from '@mui/material';
-import { InputFieldComponent } from '@types';
-
-export type InputProps = InputFieldComponent;
+import { InputProps } from '@types';
 
 export const Input: FC<InputProps> = memo(
-  ({ value, placeholder, label, disabled }) => {
+  ({ value, placeholder, label, disabled, onChangeOptions }) => {
     return (
       <TextField
         value={value}
         disabled={disabled}
         label={label}
         placeholder={placeholder}
+        onChange={(e) => onChangeOptions({ value: e.target.value })}
         fullWidth
       />
     );
