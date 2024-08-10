@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo } from 'react';
 import {
   Box,
   Radio as RadioBase,
@@ -6,16 +6,10 @@ import {
   FormControlLabel,
   FormLabel,
 } from '@mui/material';
-import { RadioProps, SelectionOption } from '@types';
+import { RadioProps } from '@types';
 
 export const Radio: FC<RadioProps> = memo(
   ({ options, value, formKey, label, disabled, onChangeOptions }) => {
-    const isChecked = useCallback(
-      (option: Pick<SelectionOption, 'value'>) =>
-        value?.length ? value.includes(option.value) : false,
-      [value]
-    );
-
     return (
       <FormControl fullWidth>
         {label && <FormLabel>{label}</FormLabel>}
@@ -25,7 +19,7 @@ export const Radio: FC<RadioProps> = memo(
               key={option.value}
               control={
                 <RadioBase
-                  checked={isChecked(option)}
+                  checked={value === option.value}
                   name={formKey}
                   value={option.value}
                   disabled={disabled}

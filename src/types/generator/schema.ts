@@ -1,6 +1,6 @@
 import { ComponentSchema } from './components-schemas';
 import { ResponsiveSizes } from './general';
-import { ComponentsMap } from './components-props';
+import { ComponentsView } from './components-props';
 
 export type SchemaLayout = {
   rowsSpanPx?: ResponsiveSizes<number>;
@@ -16,5 +16,5 @@ export type Schema = {
 
 export type Generator = {
   schema: Schema;
-  componentsMap?: ComponentsMap;
+  componentsView?: ComponentsView;
 };

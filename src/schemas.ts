@@ -1,4 +1,4 @@
-import { ComponentType, Schema } from '@types';
+import { Schema } from '@types';
 
 export const medicalQuestionnaireSchema: Schema = {
   id: '1',
@@ -7,7 +7,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'name4',
       formKey: 'name',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Full Name',
       disabled: false,
       value: '',
@@ -16,7 +16,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'email5',
       formKey: 'email',
-      type: ComponentType.EmailField,
+      type: 'email-field',
       label: 'Email',
       disabled: false,
       value: '',
@@ -25,7 +25,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'phone5',
       formKey: 'phone',
-      type: ComponentType.PhoneField,
+      type: 'phone-field',
       label: 'Phone Number',
       disabled: false,
       value: '',
@@ -34,7 +34,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'dob1',
       formKey: 'dob',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Date of Birth',
       disabled: false,
       value: '',
@@ -44,7 +44,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'gender2',
       formKey: 'gender',
-      type: ComponentType.RadioField,
+      type: 'radio-field',
       label: 'Gender',
       disabled: false,
       options: [
@@ -52,13 +52,13 @@ export const medicalQuestionnaireSchema: Schema = {
         { label: 'Female', value: 'female' },
         { label: 'Other', value: 'other' },
       ],
-      selectedOptionsValues: [],
+      value: 'other',
       layout: { col: { default: 24 } },
     },
     {
       id: 'address2',
       formKey: 'address',
-      type: ComponentType.TextareaField,
+      type: 'textarea-field',
       label: 'Address',
       disabled: false,
       value: '',
@@ -67,7 +67,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'medicalHistory1',
       formKey: 'medicalHistory',
-      type: ComponentType.TextareaField,
+      type: 'textarea-field',
       label: 'Medical History',
       disabled: false,
       value: '',
@@ -76,7 +76,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'allergies1',
       formKey: 'allergies',
-      type: ComponentType.CheckboxField,
+      type: 'checkbox-field',
       label: 'Allergies',
       disabled: false,
       options: [
@@ -85,13 +85,13 @@ export const medicalQuestionnaireSchema: Schema = {
         { label: 'Gluten', value: 'gluten' },
         { label: 'Other', value: 'other' },
       ],
-      selectedOptionsValues: [],
+      value: [],
       layout: { col: { default: 24 } },
     },
     {
       id: 'medications1',
       formKey: 'medications',
-      type: ComponentType.TextareaField,
+      type: 'textarea-field',
       label: 'Current Medications',
       disabled: false,
       value: '',
@@ -100,7 +100,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'insuranceProvider1',
       formKey: 'insuranceProvider',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Insurance Provider',
       disabled: false,
       value: '',
@@ -109,7 +109,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'policyNumber1',
       formKey: 'policyNumber',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Policy Number',
       disabled: false,
       value: '',
@@ -118,7 +118,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'emergencyContact1',
       formKey: 'emergencyContact',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Emergency Contact',
       disabled: false,
       value: '',
@@ -127,7 +127,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'emergencyContactPhone1',
       formKey: 'emergencyContactPhone',
-      type: ComponentType.PhoneField,
+      type: 'phone-field',
       label: 'Emergency Contact Phone Number',
       disabled: false,
       value: '',
@@ -136,7 +136,7 @@ export const medicalQuestionnaireSchema: Schema = {
     {
       id: 'submit5',
       formKey: 'submit',
-      type: ComponentType.Button,
+      type: 'button',
       text: 'Submit',
       layout: { col: { default: 24 } },
     },
@@ -150,7 +150,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'employeeName1',
       formKey: 'employeeName',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Employee Name',
       placeholder: 'Your name',
       disabled: false,
@@ -160,7 +160,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'email6',
       formKey: 'email',
-      type: ComponentType.EmailField,
+      type: 'email-field',
       label: 'Email',
       placeholder: 'example@gmail.com',
       disabled: false,
@@ -170,7 +170,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'department1',
       formKey: 'department',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Department',
       placeholder: 'Department name',
       disabled: false,
@@ -180,7 +180,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'reviewPeriod1',
       formKey: 'reviewPeriod',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Review Period',
       disabled: false,
       value: '',
@@ -190,7 +190,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'performanceRating1',
       formKey: 'performanceRating',
-      type: ComponentType.RadioField,
+      type: 'radio-field',
       label: 'Performance Rating',
       disabled: false,
       options: [
@@ -199,13 +199,13 @@ export const employeeAnnualReviewSchema: Schema = {
         { label: 'Average', value: 'average' },
         { label: 'Poor', value: 'poor' },
       ],
-      selectedOptionsValues: [],
+      value: 'good',
       layout: { col: { default: 24 } },
     },
     {
       id: 'goalsAchieved1',
       formKey: 'goalsAchieved',
-      type: ComponentType.CheckboxField,
+      type: 'checkbox-field',
       label: 'Goals Achieved',
       disabled: false,
       options: [
@@ -213,13 +213,13 @@ export const employeeAnnualReviewSchema: Schema = {
         { label: 'Exceeded expectations', value: 'expectations' },
         { label: 'Improved skills', value: 'skills' },
       ],
-      selectedOptionsValues: [],
+      value: [],
       layout: { col: { default: 24 } },
     },
     {
       id: 'areasForImprovement1',
       formKey: 'areasForImprovement',
-      type: ComponentType.TextareaField,
+      type: 'textarea-field',
       label: 'Areas for Improvement',
       disabled: false,
       value: '',
@@ -228,7 +228,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'trainingRequired1',
       formKey: 'trainingRequired',
-      type: ComponentType.TextareaField,
+      type: 'textarea-field',
       label: 'Training Required',
       disabled: false,
       value: '',
@@ -237,7 +237,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'additionalComments1',
       formKey: 'additionalComments',
-      type: ComponentType.TextareaField,
+      type: 'textarea-field',
       label: 'Additional Comments',
       disabled: false,
       value: '',
@@ -246,7 +246,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'reviewerName1',
       formKey: 'reviewerName',
-      type: ComponentType.InputField,
+      type: 'input-field',
       label: 'Reviewer Name',
       placeholder: "Enter the reviewer's name",
       disabled: false,
@@ -256,7 +256,7 @@ export const employeeAnnualReviewSchema: Schema = {
     {
       id: 'submit6',
       formKey: 'submit',
-      type: ComponentType.Button,
+      type: 'button',
       text: 'Submit Review',
       layout: { col: { default: 24 } },
     },
@@ -272,9 +272,19 @@ export const personalSchema: Schema = {
   },
   components: [
     {
+      id: '0',
+      type: 'text',
+      text: 'Header text',
+      layout: {
+        col: {
+          default: 24,
+        },
+      },
+    },
+    {
       id: '1',
       formKey: 'personal-info',
-      type: ComponentType.Group,
+      type: 'group',
       layout: {
         col: {
           default: 24,
@@ -284,9 +294,9 @@ export const personalSchema: Schema = {
         {
           id: '1-1',
           formKey: 'first-name',
-          type: ComponentType.InputField,
+          type: 'input-field',
           label: 'First Name',
-          value: '',
+          value: 'John',
           placeholder: 'Enter your first name',
           layout: {
             col: {
@@ -298,9 +308,9 @@ export const personalSchema: Schema = {
         {
           id: '1-2',
           formKey: 'last-name',
-          type: ComponentType.InputField,
+          type: 'input-field',
           label: 'Last Name',
-          value: '',
+          value: 'Doe',
           placeholder: 'Enter your last name',
           layout: {
             col: {
@@ -312,9 +322,9 @@ export const personalSchema: Schema = {
         {
           id: '1-3',
           formKey: 'email',
-          type: ComponentType.EmailField,
+          type: 'email-field',
           label: 'Email',
-          value: '',
+          value: 'johndoe@example.com',
           placeholder: 'Enter your email',
           layout: {
             col: {
@@ -328,7 +338,7 @@ export const personalSchema: Schema = {
     {
       id: '2',
       formKey: 'preferences',
-      type: ComponentType.Group,
+      type: 'group',
       layout: {
         col: {
           default: 24,
@@ -338,14 +348,14 @@ export const personalSchema: Schema = {
         {
           id: '2-1',
           formKey: 'favorite-color',
-          type: ComponentType.SelectField,
+          type: 'select-field',
           label: 'Favorite Color',
           options: [
             { label: 'Red', value: 'red' },
             { label: 'Green', value: 'green' },
             { label: 'Blue', value: 'blue' },
           ],
-          selectedOptionsValues: [],
+          value: ['blue'],
           placeholder: 'Select your favorite color',
           layout: {
             col: {
@@ -356,13 +366,13 @@ export const personalSchema: Schema = {
         {
           id: '2-2',
           formKey: 'subscribe',
-          type: ComponentType.CheckboxField,
+          type: 'checkbox-field',
           label: 'Subscribe to newsletter',
           options: [
             { label: 'Yes', value: 'yes' },
             { label: 'No', value: 'no' },
           ],
-          selectedOptionsValues: [],
+          value: ['yes'],
           layout: {
             col: {
               default: 24,
@@ -371,14 +381,14 @@ export const personalSchema: Schema = {
         },
         {
           id: '2-3',
-          formKey: 'subscribe',
-          type: ComponentType.RadioField,
+          formKey: 'sex',
+          type: 'radio-field',
           label: 'Your sex',
           options: [
             { label: 'Male', value: 'male' },
             { label: 'Female', value: 'female' },
           ],
-          selectedOptionsValues: [],
+          value: 'male',
           layout: {
             col: {
               default: 24,
@@ -390,9 +400,9 @@ export const personalSchema: Schema = {
     {
       id: '3',
       formKey: 'phone',
-      type: ComponentType.PhoneField,
+      type: 'phone-field',
       label: 'Phone Number',
-      value: '',
+      value: '+1234567890',
       placeholder: 'Enter your phone number',
       layout: {
         col: {
@@ -403,9 +413,9 @@ export const personalSchema: Schema = {
     {
       id: '4',
       formKey: 'article',
-      type: ComponentType.TextareaField,
+      type: 'textarea-field',
       label: 'Article',
-      value: '',
+      value: 'This is a sample article.',
       placeholder: 'Enter your article',
       layout: {
         col: {
@@ -416,7 +426,7 @@ export const personalSchema: Schema = {
     {
       id: '5',
       formKey: 'submit',
-      type: ComponentType.Button,
+      type: 'button',
       text: 'Submit',
       layout: {
         col: {
@@ -426,3 +436,4 @@ export const personalSchema: Schema = {
     },
   ],
 };
+

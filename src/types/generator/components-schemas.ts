@@ -3,7 +3,7 @@ import { ComponentLayout, ComponentType } from './general';
 export type GeneralComponent<T extends ComponentType> = {
   id: string;
   type: T;
-  formKey: string;
+  formKey?: string;
   layout: ComponentLayout;
   customProperties?: Record<string, string>;
 };

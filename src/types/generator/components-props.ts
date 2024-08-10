@@ -12,10 +12,61 @@ import {
   PhoneFieldComponentSchema,
   ComponentSchema,
 } from './components-schemas';
-import { ComponentType } from './general';
+import { PartialIndex } from '../general';
 
 export type DynamicComponentProps<T extends ComponentSchema> = T & {
-  onChangeOptions: (changes: { [V in keyof Partial<T>]: T[V] }) => void;
+  onChangeOptions: (changes: PartialIndex<T>) => void;
+};
+
+export type ComponentType =
+  | 'input-field'
+  | 'email-field'
+  | 'phone-field'
+  | 'textarea-field'
+  | 'select-field'
+  | 'checkbox-field'
+  | 'radio-field'
+  | 'text'
+  | 'button'
+  | 'group';
+
+export type ResponsiveSizes<T> = {
+  default: T;
+  xxl?: T;
+  xl?: T;
+  lg?: T;
+  md?: T;
+  sm?: T;
+};
+
+export type ColSpan =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20
+  | 21
+  | 22
+  | 23
+  | 24;
+
+export type ComponentLayout = {
+  col: ResponsiveSizes<ColSpan>;
 };
 
 export type CheckboxProps = DynamicComponentProps<CheckboxFieldComponentSchema>;
@@ -52,4 +103,4 @@ export type Component =
   | FC<CheckboxProps>
   | FC<ButtonProps>;
 
-export type ComponentsMap = Record<ComponentType, FC>;
+export type ComponentsView = Record<ComponentType, Component>;
