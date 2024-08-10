@@ -1,8 +1,10 @@
 import { FC, memo } from 'react';
+
 import { Schema } from '@types';
-import { WrapperComponent } from '../WrapperComponent';
+
 import styles from './styles.module.sass';
 import { RenderComponent } from '../RenderComponent';
+import { WrapperComponent } from '../WrapperComponent';
 
 export type RenderComponentsGridProps = Pick<Schema, 'components'> & {
   id?: string;

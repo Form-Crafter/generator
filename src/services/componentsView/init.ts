@@ -1,7 +1,8 @@
-import { sample } from 'effector';
-import { setComponentsViewEvent, $componentsView } from '.';
-import { ComponentsView, ComponentType } from '@types';
 import { defaultComponentsView } from '@components';
+import { ComponentsView, ComponentType } from '@types';
+import { sample } from 'effector';
+
+import { setComponentsViewEvent, $componentsView } from '.';
 
 sample({
   clock: setComponentsViewEvent,

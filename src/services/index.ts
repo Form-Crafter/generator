@@ -1,5 +1,6 @@
 import { ComponentSchema, Schema } from '@types';
 import { createEvent, createStore } from 'effector';
+
 import { expandComponentsTree } from './utils';
 
 export const $schema = createStore<Schema>({

@@ -1,8 +1,10 @@
-import { useUnit } from 'effector-react';
-import { $schemaComponents, setFullSchemaEvent } from '.';
 import { useEffect } from 'react';
-import { setComponentsViewEvent } from './componentsView';
+
 import { ComponentsView, Schema } from '@types/generator';
+import { useUnit } from 'effector-react';
+
+import { $schemaComponents, setFullSchemaEvent } from '.';
+import { setComponentsViewEvent } from './componentsView';
 
 export const useFillSchema = (
   schema: Schema,

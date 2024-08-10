@@ -436,4 +436,3 @@ export const personalSchema: Schema = {
     },
   ],
 };
-

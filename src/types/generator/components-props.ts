@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import {
   ButtonComponentSchema,
   InputFieldComponentSchema,
@@ -103,4 +104,4 @@ export type Component =
   | FC<CheckboxProps>
   | FC<ButtonProps>;
 
-export type ComponentsView = Record<ComponentType, Component>;
+export type ComponentsView = Partial<Record<ComponentType, Component>>;

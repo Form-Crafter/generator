@@ -1,9 +1,11 @@
-import { Generator as GeneratorProps } from '@types';
 import { FC, memo } from 'react';
-import { RenderComponentsGrid } from '../RenderComponentsGrid';
+
+import { useFillSchema, useSchemaComponents } from '@services/hooks';
+import { Generator as GeneratorProps } from '@types';
+
 import { useGeneratorStylesVars } from './hooks';
 import styles from './styles.module.sass';
-import { useFillSchema, useSchemaComponents } from '@services/hooks';
+import { RenderComponentsGrid } from '../RenderComponentsGrid';
 
 export const Generator: FC<GeneratorProps> = memo(
   ({ schema, componentsView }) => {

@@ -1,13 +1,14 @@
+import { FC, useMemo } from 'react';
+
 import { $componentsStateMap, setComponentsStateMapEvent } from '@services';
 import { $componentsView } from '@services/componentsView';
 import { PartialIndex } from '@types';
 import { ComponentSchema, ComponentType } from '@types/generator';
 import { useStoreMap, useUnit } from 'effector-react';
-import { FC, useMemo } from 'react';
 
 const useComponentView = (type: ComponentType) => {
   const [componentsView] = useUnit([$componentsView]);
-  return componentsView[type] as FC;
+  return type in componentsView ? (componentsView[type] as FC) : null;
 };
 
 export const useComponent = ({
@@ -23,13 +24,16 @@ export const useComponent = ({
   const Component = useComponentView(type);
 
   const props = useMemo(
-    () => ({
-      ...state,
-      onChangeOptions: (data: PartialIndex<ComponentSchema>) =>
-        setComponentsStateMapEvent({ id: state.id, data }),
-    }),
-    [state]
-  ) as Parameters<typeof Component>[0];
+    () =>
+      Component
+        ? ({
+            ...state,
+            onChangeOptions: (data: PartialIndex<ComponentSchema>) =>
+              setComponentsStateMapEvent({ id: state.id, data }),
+          } as Parameters<typeof Component>[0])
+        : {},
+    [Component, state]
+  );
 
   return { state, props, Component };
 };

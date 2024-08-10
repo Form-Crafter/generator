@@ -1,8 +1,10 @@
 import { FC, PropsWithChildren, memo } from 'react';
+
 import { ComponentLayout, ComponentType } from '@types';
-import styles from './styles.module.sass';
 import { getResponsiveLayoutSizes, getStyles } from '@utils';
 import cn from 'classnames';
+
+import styles from './styles.module.sass';
 
 const getStyleVariables = (col: ComponentLayout['col']) => {
   const finalCol = getResponsiveLayoutSizes(col);

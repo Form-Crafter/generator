@@ -1,6 +1,8 @@
 import { FC, memo } from 'react';
+
 import { Generator } from '@components';
 import { Container, Paper } from '@mui/material';
+
 import { personalSchema } from './schemas';
 import '@services/init.ts';
 

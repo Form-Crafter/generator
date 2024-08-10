@@ -1,4 +1,5 @@
 import { FC, memo, useCallback } from 'react';
+
 import {
   Select as SelectBase,
   MenuItem,
@@ -6,8 +7,8 @@ import {
   InputLabel,
   FormControl,
 } from '@mui/material';
-import { SelectProps } from '@types';
 import { SelectInputProps } from '@mui/material/Select/SelectInput';
+import { SelectProps } from '@types';
 
 export const Select: FC<SelectProps> = memo(
   ({ options, value, placeholder, label, disabled, onChangeOptions }) => {

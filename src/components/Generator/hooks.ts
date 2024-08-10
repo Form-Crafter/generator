@@ -1,4 +1,5 @@
 import { SchemaLayout, Schema } from '@types';
+
 import { defaultLayout } from './consts';
 import { getStyleVariables } from './utils';
 
