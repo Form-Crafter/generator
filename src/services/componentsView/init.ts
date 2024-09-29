@@ -1,5 +1,5 @@
-import { defaultComponentsView } from '@components';
-import { ComponentsView, ComponentType } from '@types';
+import { defaultComponentsView } from '_components';
+import { ComponentsView, ComponentType } from '_types';
 import { sample } from 'effector';
 
 import { setComponentsViewEvent, $componentsView } from '.';

@@ -1,29 +1,25 @@
 import { ComponentLayout, ComponentType } from './general';
 
-export type GeneralComponent<T extends ComponentType> = {
-  id: string;
-  type: T;
-  formKey?: string;
-  layout: ComponentLayout;
-  customProperties?: Record<string, string>;
+export type GeneralComponent<T extends ComponentType, P extends Record<string, any>> = {
+  meta: {
+    id: string;
+    componentType: T;
+    formKey?: string;
+    layout: ComponentLayout;
+  },
+  properties: P,
 };
 
-export type GeneralFormFieldComponent<T extends ComponentType> =
-  GeneralComponent<T> & {
-    label?: string;
-    disabled?: boolean;
-  };
+export type GeneralFormFieldProperties = {
+  label?: string;
+  disabled?: boolean;
+};
 
 export type GeneralTextFieldComponent<T extends ComponentType> =
-  GeneralFormFieldComponent<T> & {
-    value?: string;
+  GeneralComponent<T, GeneralFormFieldProperties & {
+    value: string;
     placeholder?: string;
-  };
-
-export type SelectionOption = {
-  label: string;
-  value: string;
-};
+  }>;
 
 export type InputFieldComponentSchema =
   GeneralTextFieldComponent<'input-field'>;
@@ -37,36 +33,43 @@ export type PhoneFieldComponentSchema =
 export type TextareaFieldComponentSchema =
   GeneralTextFieldComponent<'textarea-field'>;
 
+export type SelectionOption = {
+  label: string;
+  value: string;
+};
+
 export type SelectFieldComponentSchema =
-  GeneralFormFieldComponent<'select-field'> & {
+  GeneralComponent<'select-field', GeneralFormFieldProperties & {
     placeholder?: string;
     options: SelectionOption[];
-    value?: SelectionOption['value'][];
-  };
+    value: SelectionOption['value'][];
+  }>;
 
 export type CheckboxFieldComponentSchema =
-  GeneralFormFieldComponent<'checkbox-field'> & {
+  GeneralComponent<'checkbox-field', GeneralFormFieldProperties & {
     options: SelectionOption[];
-    value?: SelectionOption['value'][];
-  };
+    value: SelectionOption['value'][];
+  }>;
 
 export type RadioFieldComponentSchema =
-  GeneralFormFieldComponent<'radio-field'> & {
+  GeneralComponent<'radio-field', GeneralFormFieldProperties & {
+    name: string;
     options: SelectionOption[];
-    value?: SelectionOption['value'];
-  };
+    value: SelectionOption['value'];
+  }>;
 
-export type TextComponentSchema = GeneralComponent<'text'> & {
+export type TextComponentSchema = GeneralComponent<'text', {
   text: string;
-};
+}>
 
-export type ButtonComponentSchema = GeneralComponent<'button'> & {
+export type ButtonComponentSchema = GeneralComponent<'button', {
   text: string;
-};
+  type: 'button' | 'submit';
+}>;
 
-export type GroupComponentSchema = GeneralComponent<'group'> & {
+export type GroupComponentSchema = GeneralComponent<'group', {
   components: ComponentSchema[];
-};
+}>;
 
 export type ComponentSchema =
   | InputFieldComponentSchema

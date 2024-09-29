@@ -7,10 +7,10 @@ import {
   FormControlLabel,
   FormLabel,
 } from '@mui/material';
-import { RadioProps } from '@types';
+import { RadioProps } from '_types';
 
 export const Radio: FC<RadioProps> = memo(
-  ({ options, value, formKey, label, disabled, onChangeOptions }) => {
+  ({ options, value, name, label, disabled, onChangeProperties }) => {
     return (
       <FormControl fullWidth>
         {label && <FormLabel>{label}</FormLabel>}
@@ -21,10 +21,10 @@ export const Radio: FC<RadioProps> = memo(
               control={
                 <RadioBase
                   checked={value === option.value}
-                  name={formKey}
+                  name={name}
                   value={option.value}
                   disabled={disabled}
-                  onChange={() => onChangeOptions({ value: option.value })}
+                  onChange={() => onChangeProperties({ value: option.value })}
                 />
               }
               label={option.label}

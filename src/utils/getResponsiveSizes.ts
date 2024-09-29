@@ -1,8 +1,8 @@
-import { Component } from '@types';
+import { ComponentLayout } from '_types';
 
 export const getResponsiveLayoutSizes = (
-  col: Component['layout']['col']
-): Required<Component['layout']['col']> => {
+  col: ComponentLayout['col']
+): Required<ComponentLayout['col']> => {
   const { default: def, xxl, xl, lg, md, sm } = col;
   return {
     default: def,

@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 
-import { Schema } from '@types';
+import { Schema } from '_types';
 
 import styles from './styles.module.sass';
 import { RenderComponent } from '../RenderComponent';
@@ -17,9 +17,9 @@ export const RenderComponentsGrid: FC<RenderComponentsGridProps> = memo(
       <div id={id} className={styles.root}>
         {components.map((schema) => (
           <WrapperComponent
-            key={schema.id}
-            componentType={schema.type}
-            layout={schema.layout}
+            key={schema.meta.id}
+            componentType={schema.meta.componentType}
+            layout={schema.meta.layout}
           >
             <RenderComponent componentSchema={schema} />
           </WrapperComponent>

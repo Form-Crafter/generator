@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, memo } from 'react';
 
-import { ComponentLayout, ComponentType } from '@types';
-import { getResponsiveLayoutSizes, getStyles } from '@utils';
+import { ComponentLayout, ComponentType } from '_types';
+import { getResponsiveLayoutSizes, getStyles } from '_utils';
 import cn from 'classnames';
 
 import styles from './styles.module.sass';

@@ -1,4 +1,4 @@
-import { SchemaLayout } from '@types';
+import { SchemaLayout } from '_types';
 
 export const defaultLayout: Required<SchemaLayout> = {
   rowsSpanPx: { default: 16 },

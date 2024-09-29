@@ -1,4 +1,4 @@
-import { ComponentSchema, Schema } from '@types';
+import { ComponentSchema, Schema } from '_types';
 import { createEvent, createStore } from 'effector';
 
 import { expandComponentsTree } from './utils';
@@ -11,20 +11,21 @@ export const $schema = createStore<Schema>({
 
 export const setFullSchemaEvent = createEvent<Schema>('setFullSchemaEvent');
 
-export const setComponentsStateMapEvent = createEvent<{
-  id: ComponentSchema['id'];
-  data: Partial<ComponentSchema>;
-}>('setComponentsStateMapEvent');
+export const updateComponentPropertiesMapEvent = createEvent<{
+  id: ComponentSchema['meta']['id'];
+  data: Partial<ComponentSchema['properties']>;
+}>('updateComponentPropertiesMapEvent');
 
 export const $componentsStateMap = createStore<
-  Record<ComponentSchema['id'], ComponentSchema>
+  Record<ComponentSchema['meta']['id'], ComponentSchema>
 >({})
   .on(setFullSchemaEvent, (_, { components }) =>
     expandComponentsTree(components)
   )
-  .on(setComponentsStateMapEvent, (state, { id, data }) => {
-    const componentData = { ...state[id], ...data } as ComponentSchema;
-    return { ...state, [id]: componentData };
+  .on(updateComponentPropertiesMapEvent, (prevState, { id, data }) => {
+    const curComponentState = prevState[id];
+    const finalState = { ...curComponentState, properties: {...curComponentState.properties, ...data} } as ComponentSchema;
+    return { ...prevState, [id]: finalState };
   });
 
 export const $schemaComponents = $schema.map((schema) => schema.components);

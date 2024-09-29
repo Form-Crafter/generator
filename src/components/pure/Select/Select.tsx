@@ -8,18 +8,18 @@ import {
   FormControl,
 } from '@mui/material';
 import { SelectInputProps } from '@mui/material/Select/SelectInput';
-import { SelectProps } from '@types';
+import { SelectProps } from '_types';
 
 export const Select: FC<SelectProps> = memo(
-  ({ options, value, placeholder, label, disabled, onChangeOptions }) => {
+  ({ options, value, placeholder, label, disabled, onChangeProperties }) => {
     const handleChange = useCallback<
       Required<SelectInputProps<string[]>>['onChange']
     >(
       ({ target: { value } }) => {
         const finalValue = Array.isArray(value) ? value : [value];
-        onChangeOptions({ value: finalValue });
+        onChangeProperties({ value: finalValue });
       },
-      [onChangeOptions]
+      [onChangeProperties]
     );
 
     return (

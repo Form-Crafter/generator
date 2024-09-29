@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { ComponentsView, Schema } from '@types/generator';
+import { ComponentsView, Schema } from '_types/generator';
 import { useUnit } from 'effector-react';
 
 import { $schemaComponents, setFullSchemaEvent } from '.';

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 
-import { useFillSchema, useSchemaComponents } from '@services/hooks';
-import { Generator as GeneratorProps } from '@types';
+import { useFillSchema, useSchemaComponents } from '_services/hooks';
+import { Generator as GeneratorProps } from '_types';
 
 import { useGeneratorStylesVars } from './hooks';
 import styles from './styles.module.sass';

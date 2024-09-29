@@ -1,4 +1,4 @@
-import { ComponentsView } from '@types';
+import { ComponentsView } from '_types';
 import { createEvent, createStore } from 'effector';
 
 export const $componentsView = createStore<ComponentsView>(

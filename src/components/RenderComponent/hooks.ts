@@ -1,9 +1,9 @@
 import { FC, useMemo } from 'react';
 
-import { $componentsStateMap, setComponentsStateMapEvent } from '@services';
-import { $componentsView } from '@services/componentsView';
-import { PartialIndex } from '@types';
-import { ComponentSchema, ComponentType } from '@types/generator';
+import { $componentsStateMap, updateComponentPropertiesMapEvent } from '_services';
+import { $componentsView } from '_services/componentsView';
+import { PartialIndex } from '_types';
+import { ComponentSchema, ComponentType } from '_types';
 import { useStoreMap, useUnit } from 'effector-react';
 
 const useComponentView = (type: ComponentType) => {
@@ -13,23 +13,23 @@ const useComponentView = (type: ComponentType) => {
 
 export const useComponent = ({
   id,
-  type,
-}: Pick<ComponentSchema, 'id' | 'type'>) => {
+  componentType,
+}: Pick<ComponentSchema['meta'], 'id' | 'componentType'>) => {
   const state = useStoreMap({
     store: $componentsStateMap,
     keys: [id],
     fn: (state, [id]) => state[id],
   });
 
-  const Component = useComponentView(type);
+  const Component = useComponentView(componentType);
 
   const props = useMemo(
     () =>
       Component
         ? ({
-            ...state,
-            onChangeOptions: (data: PartialIndex<ComponentSchema>) =>
-              setComponentsStateMapEvent({ id: state.id, data }),
+            ...state.properties,
+            onChangeProperties: (data: PartialIndex<ComponentSchema['properties']>) =>
+              updateComponentPropertiesMapEvent({ id: state.meta.id, data }),
           } as Parameters<typeof Component>[0])
         : {},
     [Component, state]

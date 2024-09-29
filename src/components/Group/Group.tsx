@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 
-import { GroupProps } from '@types';
+import { GroupProps } from '_types';
 
 import { RenderComponentsGrid } from '../RenderComponentsGrid';
 

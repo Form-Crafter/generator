@@ -1,10 +1,10 @@
 import { FC, memo } from 'react';
 
-import { Generator } from '@components';
 import { Container, Paper } from '@mui/material';
+import { Generator } from '_components';
 
 import { personalSchema } from './schemas';
-import '@services/init.ts';
+import '_services/init.ts';
 
 export const App: FC = memo(() => {
   return (

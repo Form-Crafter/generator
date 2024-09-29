@@ -4,13 +4,13 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   resolve: {
     alias: {
-      '@components': '/src/components',
-      '@utils': '/src/utils',
-      '@types': '/src/types',
-      '@services': '/src/services',
-      '@styles': '/src/styles',
-      '@consts': '/src/consts',
-      '@hooks': '/src/hooks',
+      _components: '/src/components',
+      _utils: '/src/utils',
+      _types: '/src/types',
+      _services: '/src/services',
+      _styles: '/src/styles',
+      _consts: '/src/consts',
+      _hooks: '/src/hooks',
     },
   },
   plugins: [react()],

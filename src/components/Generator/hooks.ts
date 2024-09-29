@@ -1,4 +1,4 @@
-import { SchemaLayout, Schema } from '@types';
+import { SchemaLayout, Schema } from '_types';
 
 import { defaultLayout } from './consts';
 import { getStyleVariables } from './utils';

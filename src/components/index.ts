@@ -1,4 +1,4 @@
-import { ComponentsView } from '@types';
+import { ComponentsView } from '_types';
 
 import { Generator } from './Generator';
 import { Group } from './Group';

@@ -13,61 +13,13 @@ import {
   PhoneFieldComponentSchema,
   ComponentSchema,
 } from './components-schemas';
+import { ComponentType } from './general';
 import { PartialIndex } from '../general';
 
-export type DynamicComponentProps<T extends ComponentSchema> = T & {
-  onChangeOptions: (changes: PartialIndex<T>) => void;
-};
+export type StaticComponentProps<T extends ComponentSchema> = T['properties'];
 
-export type ComponentType =
-  | 'input-field'
-  | 'email-field'
-  | 'phone-field'
-  | 'textarea-field'
-  | 'select-field'
-  | 'checkbox-field'
-  | 'radio-field'
-  | 'text'
-  | 'button'
-  | 'group';
-
-export type ResponsiveSizes<T> = {
-  default: T;
-  xxl?: T;
-  xl?: T;
-  lg?: T;
-  md?: T;
-  sm?: T;
-};
-
-export type ColSpan =
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
-  | 19
-  | 20
-  | 21
-  | 22
-  | 23
-  | 24;
-
-export type ComponentLayout = {
-  col: ResponsiveSizes<ColSpan>;
+export type DynamicComponentProps<T extends ComponentSchema> = T['properties'] & {
+  onChangeProperties: (changes: PartialIndex<T['properties']>) => void;
 };
 
 export type CheckboxProps = DynamicComponentProps<CheckboxFieldComponentSchema>;
@@ -84,11 +36,11 @@ export type SelectProps = DynamicComponentProps<SelectFieldComponentSchema>;
 
 export type TextareaProps = DynamicComponentProps<TextareaFieldComponentSchema>;
 
-export type ButtonProps = ButtonComponentSchema;
+export type ButtonProps = StaticComponentProps<ButtonComponentSchema>;
 
-export type TextProps = TextComponentSchema;
+export type TextProps = StaticComponentProps<TextComponentSchema>;
 
-export type GroupProps = GroupComponentSchema & {
+export type GroupProps = StaticComponentProps<GroupComponentSchema> & {
   renderComponent: unknown;
 };
 

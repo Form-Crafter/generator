@@ -1,10 +1,10 @@
 import { FC, memo } from 'react';
 
 import { TextField } from '@mui/material';
-import { TextareaProps } from '@types';
+import { TextareaProps } from '_types';
 
 export const Textarea: FC<TextareaProps> = memo(
-  ({ value, placeholder, label, disabled, onChangeOptions }) => {
+  ({ value, placeholder, label, disabled, onChangeProperties }) => {
     return (
       <TextField
         value={value}
@@ -14,7 +14,7 @@ export const Textarea: FC<TextareaProps> = memo(
         placeholder={placeholder}
         fullWidth
         minRows={4}
-        onChange={(e) => onChangeOptions({ value: e.target.value })}
+        onChange={(e) => onChangeProperties({ value: e.target.value })}
       />
     );
   }

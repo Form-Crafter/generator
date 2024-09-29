@@ -1,5 +1,5 @@
-import { SchemaLayout } from '@types';
-import { getStyles } from '@utils/getStyles';
+import { SchemaLayout } from '_types';
+import { getStyles } from '_utils/getStyles';
 
 export const getStyleVariables = (schemaLayout: Required<SchemaLayout>) =>
   getStyles({
