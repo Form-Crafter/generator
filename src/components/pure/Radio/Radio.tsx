@@ -10,7 +10,7 @@ import {
 import { RadioProps } from '_types';
 
 export const Radio: FC<RadioProps> = memo(
-  ({ options, value, name, label, disabled, onChangeProperties }) => {
+  ({ meta, options, value, label, disabled, onChangeProperties }) => {
     return (
       <FormControl fullWidth>
         {label && <FormLabel>{label}</FormLabel>}
@@ -21,7 +21,7 @@ export const Radio: FC<RadioProps> = memo(
               control={
                 <RadioBase
                   checked={value === option.value}
-                  name={name}
+                  name={meta.formKey}
                   value={option.value}
                   disabled={disabled}
                   onChange={() => onChangeProperties({ value: option.value })}

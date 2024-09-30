@@ -11,7 +11,15 @@ import { SelectInputProps } from '@mui/material/Select/SelectInput';
 import { SelectProps } from '_types';
 
 export const Select: FC<SelectProps> = memo(
-  ({ options, value, placeholder, label, disabled, onChangeProperties }) => {
+  ({
+    meta,
+    options,
+    value,
+    placeholder,
+    label,
+    disabled,
+    onChangeProperties,
+  }) => {
     const handleChange = useCallback<
       Required<SelectInputProps<string[]>>['onChange']
     >(
@@ -27,6 +35,7 @@ export const Select: FC<SelectProps> = memo(
         {label && <InputLabel>{label}</InputLabel>}
         <SelectBase
           multiple
+          name={meta.formKey}
           value={value}
           renderValue={(selected) => selected.join(', ')}
           placeholder={placeholder}

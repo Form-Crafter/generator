@@ -1,13 +1,16 @@
 import { ComponentLayout, ComponentType } from './general';
 
-export type GeneralComponent<T extends ComponentType, P extends Record<string, any>> = {
+export type GeneralComponent<
+  T extends ComponentType,
+  P extends Record<string, any>,
+> = {
   meta: {
     id: string;
     componentType: T;
     formKey?: string;
     layout: ComponentLayout;
-  },
-  properties: P,
+  };
+  properties: P;
 };
 
 export type GeneralFormFieldProperties = {
@@ -16,10 +19,13 @@ export type GeneralFormFieldProperties = {
 };
 
 export type GeneralTextFieldComponent<T extends ComponentType> =
-  GeneralComponent<T, GeneralFormFieldProperties & {
-    value: string;
-    placeholder?: string;
-  }>;
+  GeneralComponent<
+    T,
+    GeneralFormFieldProperties & {
+      value: string;
+      placeholder?: string;
+    }
+  >;
 
 export type InputFieldComponentSchema =
   GeneralTextFieldComponent<'input-field'>;
@@ -38,38 +44,52 @@ export type SelectionOption = {
   value: string;
 };
 
-export type SelectFieldComponentSchema =
-  GeneralComponent<'select-field', GeneralFormFieldProperties & {
+export type SelectFieldComponentSchema = GeneralComponent<
+  'select-field',
+  GeneralFormFieldProperties & {
     placeholder?: string;
     options: SelectionOption[];
     value: SelectionOption['value'][];
-  }>;
+  }
+>;
 
-export type CheckboxFieldComponentSchema =
-  GeneralComponent<'checkbox-field', GeneralFormFieldProperties & {
+export type CheckboxFieldComponentSchema = GeneralComponent<
+  'checkbox-field',
+  GeneralFormFieldProperties & {
     options: SelectionOption[];
     value: SelectionOption['value'][];
-  }>;
+  }
+>;
 
-export type RadioFieldComponentSchema =
-  GeneralComponent<'radio-field', GeneralFormFieldProperties & {
-    name: string;
+export type RadioFieldComponentSchema = GeneralComponent<
+  'radio-field',
+  GeneralFormFieldProperties & {
     options: SelectionOption[];
     value: SelectionOption['value'];
-  }>;
+  }
+>;
 
-export type TextComponentSchema = GeneralComponent<'text', {
-  text: string;
-}>
+export type TextComponentSchema = GeneralComponent<
+  'text',
+  {
+    text: string;
+  }
+>;
 
-export type ButtonComponentSchema = GeneralComponent<'button', {
-  text: string;
-  type: 'button' | 'submit';
-}>;
+export type ButtonComponentSchema = GeneralComponent<
+  'button',
+  {
+    text: string;
+    type: 'button' | 'submit';
+  }
+>;
 
-export type GroupComponentSchema = GeneralComponent<'group', {
-  components: ComponentSchema[];
-}>;
+export type GroupComponentSchema = GeneralComponent<
+  'group',
+  {
+    components: ComponentSchema[];
+  }
+>;
 
 export type ComponentSchema =
   | InputFieldComponentSchema

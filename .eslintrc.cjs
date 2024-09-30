@@ -50,5 +50,6 @@ module.exports = {
         pathGroupsExcludedImportTypes: ['react'],
       },
     ],
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 };

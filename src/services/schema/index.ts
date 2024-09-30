@@ -24,8 +24,11 @@ export const $componentsStateMap = createStore<
   )
   .on(updateComponentPropertiesMapEvent, (prevState, { id, data }) => {
     const curComponentState = prevState[id];
-    const finalState = { ...curComponentState, properties: {...curComponentState.properties, ...data} } as ComponentSchema;
+    const finalState = {
+      ...curComponentState,
+      properties: { ...curComponentState.properties, ...data },
+    } as ComponentSchema;
     return { ...prevState, [id]: finalState };
   });
 
-export const $schemaComponents = $schema.map((schema) => schema.components);
+export const $componentsSchemas = $schema.map((schema) => schema.components);

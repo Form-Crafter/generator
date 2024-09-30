@@ -7,4 +7,4 @@ export const $componentsView = createStore<ComponentsView>(
 
 export const setComponentsViewEvent = createEvent<
   Partial<ComponentsView> | undefined
->('setComponentsMapEvent');
+>('setComponentsViewEvent');

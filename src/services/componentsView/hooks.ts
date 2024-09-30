@@ -1,7 +1,10 @@
 import { FC, useMemo } from 'react';
 
-import { $componentsStateMap, updateComponentPropertiesMapEvent } from '_services';
 import { $componentsView } from '_services/componentsView';
+import {
+  $componentsStateMap,
+  updateComponentPropertiesMapEvent,
+} from '_services/schema';
 import { PartialIndex } from '_types';
 import { ComponentSchema, ComponentType } from '_types';
 import { useStoreMap, useUnit } from 'effector-react';
@@ -28,12 +31,14 @@ export const useComponent = ({
       Component
         ? ({
             ...state.properties,
-            onChangeProperties: (data: PartialIndex<ComponentSchema['properties']>) =>
-              updateComponentPropertiesMapEvent({ id: state.meta.id, data }),
+            meta: state.meta,
+            onChangeProperties: (
+              data: PartialIndex<ComponentSchema['properties']>
+            ) => updateComponentPropertiesMapEvent({ id: state.meta.id, data }),
           } as Parameters<typeof Component>[0])
         : {},
     [Component, state]
   );
 
-  return { state, props, Component };
+  return { props, Component };
 };

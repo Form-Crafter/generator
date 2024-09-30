@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 
-import { ComponentsView, Schema } from '_types/generator';
+import { GeneratorProps } from '_types';
 import { useUnit } from 'effector-react';
 
-import { $schemaComponents, setFullSchemaEvent } from '.';
 import { setComponentsViewEvent } from './componentsView';
+import { setUserSubmitHandlerEvent } from './form';
+import { $componentsSchemas, setFullSchemaEvent } from './schema';
 
-export const useFillSchema = (
-  schema: Schema,
-  componentsView?: ComponentsView
-) => {
+export const useFillStore = ({
+  schema,
+  componentsView,
+  onSubmit,
+}: GeneratorProps) => {
   useEffect(() => {
     setFullSchemaEvent(schema);
   }, [schema]);
@@ -17,9 +19,13 @@ export const useFillSchema = (
   useEffect(() => {
     setComponentsViewEvent(componentsView);
   }, [componentsView]);
+
+  useEffect(() => {
+    setUserSubmitHandlerEvent(onSubmit);
+  }, [onSubmit]);
 };
 
-export const useSchemaComponents = () => {
-  const [components] = useUnit([$schemaComponents]);
+export const useComponentsSchemas = () => {
+  const [components] = useUnit([$componentsSchemas]);
   return components;
 };

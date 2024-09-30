@@ -14,7 +14,8 @@ export type Schema = {
   components: ComponentSchema[];
 };
 
-export type Generator = {
+export type GeneratorProps = {
   schema: Schema;
   componentsView?: ComponentsView;
+  onSubmit: (data: Record<string, any>) => void;
 };

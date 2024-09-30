@@ -16,11 +16,14 @@ import {
 import { ComponentType } from './general';
 import { PartialIndex } from '../general';
 
-export type StaticComponentProps<T extends ComponentSchema> = T['properties'];
+export type StaticComponentProps<T extends ComponentSchema> = Pick<T, 'meta'> &
+  T['properties'];
 
-export type DynamicComponentProps<T extends ComponentSchema> = T['properties'] & {
-  onChangeProperties: (changes: PartialIndex<T['properties']>) => void;
-};
+export type DynamicComponentProps<T extends ComponentSchema> =
+  T['properties'] & {
+    onChangeProperties: (changes: PartialIndex<T['properties']>) => void;
+    meta: T['meta'];
+  };
 
 export type CheckboxProps = DynamicComponentProps<CheckboxFieldComponentSchema>;
 

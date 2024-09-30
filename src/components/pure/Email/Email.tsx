@@ -4,10 +4,11 @@ import { TextField } from '@mui/material';
 import { EmailProps } from '_types';
 
 export const Email: FC<EmailProps> = memo(
-  ({ value, placeholder, label, disabled, onChangeProperties }) => {
+  ({ meta, value, placeholder, label, disabled, onChangeProperties }) => {
     return (
       <TextField
         fullWidth
+        name={meta.formKey}
         value={value}
         disabled={disabled}
         label={label}

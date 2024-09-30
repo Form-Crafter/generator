@@ -4,9 +4,10 @@ import { TextField } from '@mui/material';
 import { PhoneProps } from '_types';
 
 export const Phone: FC<PhoneProps> = memo(
-  ({ value, placeholder, label, disabled, onChangeProperties }) => {
+  ({ meta, value, placeholder, label, disabled, onChangeProperties }) => {
     return (
       <TextField
+        name={meta.formKey}
         value={value}
         disabled={disabled}
         label={label}

@@ -6,7 +6,10 @@ export const expandComponentsTree = (
   let result: Record<ComponentSchema['meta']['id'], ComponentSchema> = {};
 
   components.forEach((comp) => {
-    if ('components' in comp?.properties && comp?.properties?.components?.length) {
+    if (
+      'components' in comp.properties &&
+      comp.properties?.components?.length
+    ) {
       const subComponents = comp.properties.components;
       const subResult = expandComponentsTree(subComponents);
       result = { ...result, [comp.meta.id]: comp, ...subResult };

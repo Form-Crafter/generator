@@ -6,16 +6,17 @@ import styles from './styles.module.sass';
 import { RenderComponent } from '../RenderComponent';
 import { WrapperComponent } from '../WrapperComponent';
 
-export type RenderComponentsGridProps = Pick<Schema, 'components'> & {
+export type RenderComponentsGridProps = {
   id?: string;
   className?: string;
+  componentsSchemas: Schema['components'];
 };
 
 export const RenderComponentsGrid: FC<RenderComponentsGridProps> = memo(
-  ({ components, id }) => {
+  ({ componentsSchemas, id }) => {
     return (
       <div id={id} className={styles.root}>
-        {components.map((schema) => (
+        {componentsSchemas.map((schema) => (
           <WrapperComponent
             key={schema.meta.id}
             componentType={schema.meta.componentType}

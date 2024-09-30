@@ -1,24 +1,33 @@
-import { FC, memo } from 'react';
+import { FC, FormEvent, memo, useCallback } from 'react';
 
-import { useFillSchema, useSchemaComponents } from '_services/hooks';
-import { Generator as GeneratorProps } from '_types';
+import { onFormSubmitEvent } from '_services/form';
+import { useFillStore, useComponentsSchemas } from '_services/hooks';
+import { GeneratorProps } from '_types';
 
 import { useGeneratorStylesVars } from './hooks';
 import styles from './styles.module.sass';
 import { RenderComponentsGrid } from '../RenderComponentsGrid';
 
 export const Generator: FC<GeneratorProps> = memo(
-  ({ schema, componentsView }) => {
-    useFillSchema(schema, componentsView);
+  ({ schema, componentsView, onSubmit }) => {
+    useFillStore({ schema, componentsView, onSubmit });
 
     const stylesVars = useGeneratorStylesVars(schema.layout);
 
-    const components = useSchemaComponents();
+    const componentsSchemas = useComponentsSchemas();
+
+    const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      onFormSubmitEvent();
+    }, []);
 
     return (
-      <div className={styles.root} style={stylesVars}>
-        <RenderComponentsGrid id={schema.id} components={components} />
-      </div>
+      <form onSubmit={handleSubmit} className={styles.root} style={stylesVars}>
+        <RenderComponentsGrid
+          id={schema.id}
+          componentsSchemas={componentsSchemas}
+        />
+      </form>
     );
   }
 );

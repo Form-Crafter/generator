@@ -1,4 +1,4 @@
-import { Schema } from "./types";
+import { Schema } from './types';
 
 export const personalSchema: Schema = {
   id: '3',
@@ -27,7 +27,6 @@ export const personalSchema: Schema = {
       meta: {
         id: '1',
         componentType: 'group',
-        formKey: 'personal-info',
         layout: {
           col: {
             default: 24,
@@ -97,7 +96,6 @@ export const personalSchema: Schema = {
       meta: {
         id: '2',
         componentType: 'group',
-        formKey: 'preferences',
         layout: {
           col: {
             default: 24,
@@ -161,7 +159,6 @@ export const personalSchema: Schema = {
             },
             properties: {
               label: 'Your sex',
-              name: 'sex',
               options: [
                 { label: 'Male', value: 'male' },
                 { label: 'Female', value: 'female' },
