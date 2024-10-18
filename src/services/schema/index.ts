@@ -1,34 +1,56 @@
 import { ComponentSchema, Schema } from '_types';
-import { createEvent, createStore } from 'effector';
+import {
+  ComponentsMetaData,
+  ComponentsPropertiesData,
+  ComponentsValidationData,
+  ComponentsTree,
+  ComponentsRelationsData,
+} from '_types/components';
+import { createEvent, createStore, UnitValue } from 'effector';
 
-import { expandComponentsTree } from './utils';
-
-export const $schema = createStore<Schema>({
+const $schema = createStore<Schema>({
   id: '',
   version: '1.0.0',
   components: [],
 });
 
+export const $componentsTree = createStore<ComponentsTree>([]);
+
+export const $componentsPropertiesData = createStore<ComponentsPropertiesData>(
+  {}
+);
+
+export const $componentsMetaData = createStore<ComponentsMetaData>({});
+
+export const $componentsValidationData = createStore<ComponentsValidationData>(
+  {}
+);
+
+export const $componentsRelationsData = createStore<ComponentsRelationsData>(
+  {}
+);
+
 export const setFullSchemaEvent = createEvent<Schema>('setFullSchemaEvent');
 
-export const updateComponentPropertiesMapEvent = createEvent<{
+export const expandSchemaToStoresEvent = createEvent<{
+  tree: UnitValue<typeof $componentsTree>;
+  properties: UnitValue<typeof $componentsPropertiesData>;
+  meta: UnitValue<typeof $componentsMetaData>;
+  validation: UnitValue<typeof $componentsValidationData>;
+  relations: UnitValue<typeof $componentsRelationsData>;
+}>('expandSchemaToStoresEvent');
+
+export const updateComponentPropertiesEvent = createEvent<{
   id: ComponentSchema['meta']['id'];
-  data: Partial<ComponentSchema['properties']>;
+  data: any;
 }>('updateComponentPropertiesMapEvent');
 
-export const $componentsStateMap = createStore<
-  Record<ComponentSchema['meta']['id'], ComponentSchema>
->({})
-  .on(setFullSchemaEvent, (_, { components }) =>
-    expandComponentsTree(components)
-  )
-  .on(updateComponentPropertiesMapEvent, (prevState, { id, data }) => {
-    const curComponentState = prevState[id];
-    const finalState = {
-      ...curComponentState,
-      properties: { ...curComponentState.properties, ...data },
-    } as ComponentSchema;
-    return { ...prevState, [id]: finalState };
-  });
+$schema.on(setFullSchemaEvent, (_, data) => data);
 
-export const $componentsSchemas = $schema.map((schema) => schema.components);
+$componentsPropertiesData.on(
+  updateComponentPropertiesEvent,
+  (cur, { id, data }) => ({
+    ...cur,
+    [id]: { ...cur[id], ...data },
+  })
+);

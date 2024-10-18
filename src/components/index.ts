@@ -1,16 +1,19 @@
 import { ComponentsView } from '_types';
 
+import {
+  Group,
+  Button,
+  Checkbox,
+  Email,
+  Input,
+  Phone,
+  Radio,
+  Select,
+  Text,
+  Textarea,
+  Multifield,
+} from './elements';
 import { Generator } from './Generator';
-import { Group } from './Group';
-import { Button } from './pure/Button';
-import { Checkbox } from './pure/Checkbox';
-import { Email } from './pure/Email';
-import { Input } from './pure/Input';
-import { Phone } from './pure/Phone';
-import { Radio } from './pure/Radio';
-import { Select } from './pure/Select';
-import { Text } from './pure/Text';
-import { Textarea } from './pure/Textarea';
 
 export const defaultComponentsView: ComponentsView = {
   'input-field': Input,
@@ -21,6 +24,7 @@ export const defaultComponentsView: ComponentsView = {
   'checkbox-field': Checkbox,
   'radio-field': Radio,
   group: Group,
+  multifield: Multifield,
   button: Button,
   text: Text,
 };

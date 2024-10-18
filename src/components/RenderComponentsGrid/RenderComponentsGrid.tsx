@@ -1,31 +1,25 @@
 import { FC, memo } from 'react';
 
-import { Schema } from '_types';
+import { ComponentsTree } from '_types/components';
 
 import styles from './styles.module.sass';
+import { LayoutComponent } from '../LayoutComponent';
 import { RenderComponent } from '../RenderComponent';
-import { WrapperComponent } from '../WrapperComponent';
 
 export type RenderComponentsGridProps = {
   id?: string;
   className?: string;
-  componentsSchemas: Schema['components'];
+  tree: ComponentsTree;
 };
 
 export const RenderComponentsGrid: FC<RenderComponentsGridProps> = memo(
-  ({ componentsSchemas, id }) => {
-    return (
-      <div id={id} className={styles.root}>
-        {componentsSchemas.map((schema) => (
-          <WrapperComponent
-            key={schema.meta.id}
-            componentType={schema.meta.componentType}
-            layout={schema.meta.layout}
-          >
-            <RenderComponent componentSchema={schema} />
-          </WrapperComponent>
-        ))}
-      </div>
-    );
-  }
+  ({ id, tree }) => (
+    <div id={id} className={styles.root}>
+      {tree.map((node) => (
+        <LayoutComponent key={node.id} id={node.id}>
+          <RenderComponent {...node} />
+        </LayoutComponent>
+      ))}
+    </div>
+  )
 );

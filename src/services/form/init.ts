@@ -1,4 +1,3 @@
-import '../componentsView/init';
 import { sample } from 'effector';
 
 import { onFormSubmitEvent, invokeUserSubmitHandlerFx } from '.';

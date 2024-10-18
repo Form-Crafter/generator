@@ -1,2 +1,3 @@
-export * from './generator';
+export * from './core';
+export * from './components';
 export * from './general';
