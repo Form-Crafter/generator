@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-import { ComponentsTree } from './tree';
+import { ComponentsTree, TreeNode } from './tree';
 import {
   ButtonComponentSchema,
   InputFieldComponentSchema,
@@ -14,15 +14,14 @@ import {
   PhoneFieldComponentSchema,
   ComponentSchema,
   MultifieldComponentSchema,
+  ComponentId,
 } from '../core/components-schemas';
-import { ComponentType } from '../core/general';
-import { PartialIndex } from '../general';
 
 type GeneralComponentProps<T extends ComponentSchema> = Pick<
   T,
   'meta' | 'properties'
 > & {
-  parentId: number | null;
+  parentId: TreeNode['parentId'];
 };
 
 export type StaticComponentProps<T extends ComponentSchema> =
@@ -30,7 +29,7 @@ export type StaticComponentProps<T extends ComponentSchema> =
 
 export type DynamicComponentProps<T extends ComponentSchema> =
   GeneralComponentProps<T> & {
-    onChangeProperties: (changes: PartialIndex<T['properties']>) => void;
+    onChangeProperties: (changes: Partial<T['properties']>) => void;
   };
 
 export type CheckboxProps = DynamicComponentProps<CheckboxFieldComponentSchema>;
@@ -53,24 +52,26 @@ export type TextProps = StaticComponentProps<TextComponentSchema>;
 
 export type GroupProps = StaticComponentProps<GroupComponentSchema> & {
   childTree: ComponentsTree;
+  titleExtra?: ReactNode;
 };
 
 export type MultifieldProps =
-  StaticComponentProps<MultifieldComponentSchema> & {
-    childTree: ComponentsTree;
+  DynamicComponentProps<MultifieldComponentSchema> & {
+    childTree?: ComponentsTree;
+    onAddGroup: () => void;
+    onRemoveGroup: (props: { groupId: ComponentId }) => void;
   };
 
-export type Component =
-  | FC<InputProps>
-  | FC<SelectProps>
-  | FC<RadioProps>
-  | FC<TextProps>
-  | FC<TextareaProps>
-  | FC<EmailProps>
-  | FC<PhoneProps>
-  | FC<GroupProps>
-  | FC<CheckboxProps>
-  | FC<ButtonProps>
-  | FC<MultifieldProps>;
-
-export type ComponentsView = Partial<Record<ComponentType, Component>>;
+export type ComponentsView = Partial<{
+  'input-field': FC<InputProps>;
+  'email-field': FC<EmailProps>;
+  'phone-field': FC<PhoneProps>;
+  'textarea-field': FC<TextareaProps>;
+  'select-field': FC<SelectProps>;
+  'checkbox-field': FC<CheckboxProps>;
+  'radio-field': FC<RadioProps>;
+  text: FC<TextProps>;
+  group: FC<GroupProps>;
+  multifield: FC<MultifieldProps>;
+  button: FC<ButtonProps>;
+}>;

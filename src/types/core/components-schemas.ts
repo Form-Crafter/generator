@@ -12,9 +12,11 @@ export type RelationsSchema = {
   };
 };
 
+export type ComponentId = string;
+
 export type GeneralComponent<T extends ComponentType> = {
   meta: {
-    id: string;
+    id: ComponentId;
     componentType: T;
     formKey?: string;
     layout: ComponentLayout;
@@ -97,11 +99,20 @@ export type GroupComponentSchema = GeneralComponent<'group'> & {
 };
 
 export type MultifieldComponentSchema = GeneralComponent<'multifield'> & {
-  components: ComponentSchema[];
+  components?: ComponentSchema[];
   properties: {
-    template: ComponentSchema[];
+    title?: string;
+    groupTitle?: string;
+    template: ComponentSchemaOptionalId[];
+    addButtonText?: string;
   };
 };
+
+export type WithOptionalId<T> = T extends { meta: infer M }
+  ? Omit<T, 'meta'> & { meta: Omit<M, 'id'> & { id?: ComponentId } }
+  : T;
+
+export type ComponentSchemaOptionalId = WithOptionalId<ComponentSchema>;
 
 export type ComponentSchema =
   | InputFieldComponentSchema

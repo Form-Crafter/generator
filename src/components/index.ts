@@ -15,7 +15,7 @@ import {
 } from './elements';
 import { Generator } from './Generator';
 
-export const defaultComponentsView: ComponentsView = {
+export const defaultComponentsView: Required<ComponentsView> = {
   'input-field': Input,
   'email-field': Email,
   'phone-field': Phone,

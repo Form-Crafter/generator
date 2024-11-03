@@ -184,6 +184,91 @@ export const personalSchema: Schema = {
     },
     {
       meta: {
+        id: '6',
+        componentType: 'multifield',
+        layout: {
+          col: { default: 24 },
+        },
+      },
+      properties: {
+        title: 'Contacts',
+        groupTitle: 'Contact',
+        template: [
+          {
+            meta: {
+              componentType: 'input-field',
+              formKey: 'name',
+              layout: {
+                col: { default: 12 },
+              },
+            },
+            properties: {
+              label: 'Name',
+              value: '',
+              placeholder: 'Enter your name',
+            },
+          },
+          {
+            meta: {
+              componentType: 'phone-field',
+              formKey: 'phone',
+              layout: {
+                col: { default: 12 },
+              },
+            },
+            properties: {
+              label: 'Phone Number',
+              value: '',
+              placeholder: 'Enter your phone number',
+            },
+          },
+          {
+            meta: {
+              componentType: 'email-field',
+              formKey: 'email',
+              layout: {
+                col: { default: 12 },
+              },
+            },
+            properties: {
+              label: 'Email',
+              value: '',
+              placeholder: 'Enter your email',
+            },
+          },
+          {
+            meta: {
+              componentType: 'select-field',
+              formKey: 'city',
+              layout: {
+                col: { default: 12 },
+              },
+            },
+            properties: {
+              label: 'City',
+              options: [
+                { label: 'New York', value: 'new_york' },
+                { label: 'Los Angeles', value: 'los_angeles' },
+                { label: 'Chicago', value: 'chicago' },
+                { label: 'Houston', value: 'houston' },
+                { label: 'Phoenix', value: 'phoenix' },
+                { label: 'Philadelphia', value: 'philadelphia' },
+                { label: 'San Antonio', value: 'san_antonio' },
+                { label: 'San Diego', value: 'san_diego' },
+                { label: 'Dallas', value: 'dallas' },
+                { label: 'San Jose', value: 'san_jose' },
+                { label: 'Austin', value: 'austin' },
+                { label: 'Jacksonville', value: 'jacksonville' },
+              ],
+              value: [],
+              placeholder: 'Select your city',
+            },
+          },
+        ],
+      },
+    },
+    {
+      meta: {
         id: '4',
         componentType: 'textarea-field',
         formKey: 'article',

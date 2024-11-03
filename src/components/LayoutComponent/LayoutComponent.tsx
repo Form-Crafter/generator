@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, memo } from 'react';
 
-import { useComponentMeta } from '_services/schema/hooks';
+import { useComponentMeta } from '_services/tree/hooks';
 import { ComponentLayout, ComponentSchema } from '_types';
 import { getResponsiveLayoutSizes, getStyles } from '_utils';
 import cn from 'classnames';

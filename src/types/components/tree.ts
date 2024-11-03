@@ -1,23 +1,29 @@
-import { ComponentSchema } from '../core';
-
-type Id = ComponentSchema['meta']['id'];
+import { ComponentId, ComponentSchema } from '../core';
 
 export type ComponentsTree = {
-  id: Id;
-  parentId?: Id | null;
+  id: ComponentId;
+  parentId?: ComponentId | null;
   childTree?: ComponentsTree;
 }[];
 
-export type ComponentsPropertiesData = Record<Id, any>;
+export type TreeNode = ComponentsTree[0];
 
-export type ComponentsMetaData = Record<Id, ComponentSchema['meta']>;
+export type TreeNodeWithChild = Omit<TreeNode, 'childTree'> &
+  Pick<Required<TreeNode>, 'childTree'>;
+
+export type ComponentsPropertiesData = Record<
+  ComponentId,
+  Partial<ComponentSchema['properties']>
+>;
+
+export type ComponentsMetaData = Record<ComponentId, ComponentSchema['meta']>;
 
 export type ComponentsValidationData = Record<
-  Id,
+  ComponentId,
   NonNullable<ComponentSchema['validation']>
 >;
 
 export type ComponentsRelationsData = Record<
-  Id,
+  ComponentId,
   Required<ComponentSchema['relations']>
 >;

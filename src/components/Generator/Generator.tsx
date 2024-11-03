@@ -2,9 +2,8 @@ import { FC, FormEvent, memo, useCallback } from 'react';
 
 import { onFormSubmitEvent } from '_services/form';
 import { useFillStore } from '_services/hooks';
-import { $componentsTree } from '_services/schema';
+import { useComponentsTree } from '_services/tree/hooks';
 import { GeneratorProps } from '_types';
-import { useUnit } from 'effector-react';
 
 import { useGeneratorStylesVars } from './hooks';
 import styles from './styles.module.sass';
@@ -16,12 +15,14 @@ export const Generator: FC<GeneratorProps> = memo(
 
     const stylesVars = useGeneratorStylesVars(schema.layout);
 
-    const [tree] = useUnit([$componentsTree]);
+    const tree = useComponentsTree();
 
     const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       onFormSubmitEvent();
     }, []);
+
+    console.log('tree: ', tree);
 
     return (
       <form onSubmit={handleSubmit} className={styles.root} style={stylesVars}>

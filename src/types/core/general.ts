@@ -1,3 +1,5 @@
+import { maxColSize } from '_consts/layout';
+
 export type ComponentType =
   | 'input-field'
   | 'email-field'
@@ -44,7 +46,7 @@ export type ColSpan =
   | 21
   | 22
   | 23
-  | 24;
+  | typeof maxColSize;
 
 export type ComponentLayout = {
   col: ResponsiveSizes<ColSpan>;
