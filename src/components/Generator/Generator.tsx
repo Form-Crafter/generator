@@ -22,8 +22,6 @@ export const Generator: FC<GeneratorProps> = memo(
       onFormSubmitEvent();
     }, []);
 
-    console.log('tree: ', tree);
-
     return (
       <form onSubmit={handleSubmit} className={styles.root} style={stylesVars}>
         <RenderComponentsGrid id={schema.id} tree={tree} />

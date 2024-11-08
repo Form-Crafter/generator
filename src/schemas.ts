@@ -264,6 +264,49 @@ export const personalSchema: Schema = {
               placeholder: 'Select your city',
             },
           },
+          {
+            meta: {
+              componentType: 'multifield',
+              formKey: 'social-contacts',
+              layout: {
+                col: { default: 24 },
+              },
+            },
+            properties: {
+              title: 'Social Contacts',
+              groupTitle: 'Social Contact',
+              template: [
+                {
+                  meta: {
+                    componentType: 'input-field',
+                    formKey: 'social-name',
+                    layout: {
+                      col: { default: 12 },
+                    },
+                  },
+                  properties: {
+                    label: 'Social Platform',
+                    value: '',
+                    placeholder: 'Enter the platform name',
+                  },
+                },
+                {
+                  meta: {
+                    componentType: 'input-field',
+                    formKey: 'social-link',
+                    layout: {
+                      col: { default: 12 },
+                    },
+                  },
+                  properties: {
+                    label: 'Profile Link',
+                    value: '',
+                    placeholder: 'Enter the profile link',
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },

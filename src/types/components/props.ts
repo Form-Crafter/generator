@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { ComponentsTree, TreeNode } from './tree';
 import {
@@ -20,9 +20,8 @@ import {
 type GeneralComponentProps<T extends ComponentSchema> = Pick<
   T,
   'meta' | 'properties'
-> & {
-  parentId: TreeNode['parentId'];
-};
+> &
+  Pick<TreeNode, 'parentId'>;
 
 export type StaticComponentProps<T extends ComponentSchema> =
   GeneralComponentProps<T>;
@@ -52,7 +51,9 @@ export type TextProps = StaticComponentProps<TextComponentSchema>;
 
 export type GroupProps = StaticComponentProps<GroupComponentSchema> & {
   childTree: ComponentsTree;
-  titleExtra?: ReactNode;
+  renderTitle?: (
+    props: Pick<GroupComponentSchema, 'meta' | 'properties'>
+  ) => ReactNode;
 };
 
 export type MultifieldProps =
@@ -61,17 +62,3 @@ export type MultifieldProps =
     onAddGroup: () => void;
     onRemoveGroup: (props: { groupId: ComponentId }) => void;
   };
-
-export type ComponentsView = Partial<{
-  'input-field': FC<InputProps>;
-  'email-field': FC<EmailProps>;
-  'phone-field': FC<PhoneProps>;
-  'textarea-field': FC<TextareaProps>;
-  'select-field': FC<SelectProps>;
-  'checkbox-field': FC<CheckboxProps>;
-  'radio-field': FC<RadioProps>;
-  text: FC<TextProps>;
-  group: FC<GroupProps>;
-  multifield: FC<MultifieldProps>;
-  button: FC<ButtonProps>;
-}>;

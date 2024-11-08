@@ -5,27 +5,28 @@ import { isNotUndefined } from '_utils/index';
 
 import styles from './styles.module.sass';
 import { LayoutComponent } from '../LayoutComponent';
-import { RenderComponent } from '../RenderComponent';
+import { RenderComponentContainer } from '../RenderComponentContainer';
 
 export type RenderComponentsGridProps = {
   id?: string;
   className?: string;
-  tree: ComponentsTree;
+  tree: ComponentsTree | undefined;
   children?: (node: TreeNode, index: number) => ReactNode;
 };
 
 export const RenderComponentsGrid: FC<RenderComponentsGridProps> = memo(
-  ({ id, tree, children }) => (
-    <div id={id} className={styles.root}>
-      {tree.map((node, index) => (
-        <LayoutComponent key={node.id} id={node.id}>
-          {isNotUndefined(children) ? (
-            children(node, index)
-          ) : (
-            <RenderComponent {...node} />
-          )}
-        </LayoutComponent>
-      ))}
-    </div>
-  )
+  ({ id, tree, children }) =>
+    !!tree?.length && (
+      <div id={id} className={styles.root}>
+        {tree.map((node, index) => (
+          <LayoutComponent key={node.id} id={node.id}>
+            {isNotUndefined(children) ? (
+              children(node, index)
+            ) : (
+              <RenderComponentContainer {...node} />
+            )}
+          </LayoutComponent>
+        ))}
+      </div>
+    )
 );

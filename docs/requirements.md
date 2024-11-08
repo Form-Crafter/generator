@@ -1,10 +1,14 @@
+# 1.5.0
+
+- Uplaod files and remote components
+
 # 1.4.0
 
-- Реализация multifield;
-
-# 1.3.0
-
 - Система валидации компонентов;
+
+# 1.3.0 --- DONE
+
+- Реализация multifield;
 
 # 1.2.0 --- DONE
 

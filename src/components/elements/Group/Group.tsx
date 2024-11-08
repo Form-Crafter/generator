@@ -6,17 +6,13 @@ import { GroupProps } from '_types';
 import { RenderComponentsGrid } from '../../RenderComponentsGrid';
 
 export const Group: FC<GroupProps> = memo(
-  ({ titleExtra, childTree, properties }) => {
+  ({ renderTitle, childTree, properties, meta }) => {
     const title = properties?.title;
-    const hasTopContent = title || titleExtra;
 
     return (
       <Box gap={2}>
-        {hasTopContent && (
-          <Box display="flex" justifyContent="space-between">
-            {title && <Typography variant="h6">{title}</Typography>}
-            {titleExtra}
-          </Box>
+        {renderTitle?.({ properties, meta }) || (
+          <Typography variant="h6">{title}</Typography>
         )}
         <RenderComponentsGrid tree={childTree} />
       </Box>

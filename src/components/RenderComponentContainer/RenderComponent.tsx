@@ -6,15 +6,15 @@ import {
   removeMultifieldGroupEvent,
 } from '_services/tree/components/multifield';
 import { useComponentMeta, useComponentProperties } from '_services/tree/hooks';
+import { TreeNode } from '_types/components';
 import { ComponentSchema } from '_types/core';
 
-import { RenderComponentProps } from './types';
-
-type RenderContentProps = RenderComponentProps & {
-  Component: FC;
+type Props = TreeNode & {
+  [key: string]: unknown;
+  Component: FC<any>;
 };
 
-export const RenderContent: FC<RenderContentProps> = ({
+export const RenderComponent: FC<Props> = ({
   id,
   parentId,
   childTree,
@@ -56,10 +56,5 @@ export const RenderContent: FC<RenderContentProps> = ({
     }
   }, [id, meta, properties, parentId, childTree]);
 
-  return (
-    <Component
-      {...extraProps}
-      {...(componentProps as Parameters<typeof Component>[0])}
-    />
-  );
+  return <Component {...extraProps} {...componentProps} />;
 };
