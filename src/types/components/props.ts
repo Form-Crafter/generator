@@ -15,6 +15,7 @@ import {
   ComponentSchema,
   MultifieldComponentSchema,
   ComponentId,
+  MaskInputFieldComponentSchema,
 } from '../core/components-schemas';
 
 type GeneralComponentProps<T extends ComponentSchema> = Pick<
@@ -36,6 +37,9 @@ export type CheckboxProps = DynamicComponentProps<CheckboxFieldComponentSchema>;
 export type EmailProps = DynamicComponentProps<EmailFieldComponentSchema>;
 
 export type InputProps = DynamicComponentProps<InputFieldComponentSchema>;
+
+export type MaskInputProps =
+  DynamicComponentProps<MaskInputFieldComponentSchema>;
 
 export type PhoneProps = DynamicComponentProps<PhoneFieldComponentSchema>;
 

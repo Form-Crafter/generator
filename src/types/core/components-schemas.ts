@@ -1,8 +1,20 @@
-import { ComponentLayout, ComponentType } from './general';
+import { MaskedRegExp } from 'imask';
 
-export type ValidationSchema = {
-  required?: boolean;
-};
+import { ComponentLayout } from './general';
+
+export type ComponentType =
+  | 'input'
+  | 'mask-input'
+  | 'email'
+  | 'phone'
+  | 'textarea'
+  | 'select'
+  | 'checkbox'
+  | 'radio'
+  | 'text'
+  | 'button'
+  | 'group'
+  | 'multifield';
 
 export type RelationsSchema = {
   disableIf: {
@@ -21,7 +33,7 @@ export type GeneralComponent<T extends ComponentType> = {
     formKey?: string;
     layout: ComponentLayout;
   };
-  validation?: ValidationSchema;
+  validation?: any;
   relations?: RelationsSchema;
 };
 
@@ -30,32 +42,41 @@ export type GeneralFormFieldProperties = {
   disabled?: boolean;
 };
 
-export type GeneralTextFieldComponent<T extends ComponentType> =
-  GeneralComponent<T> & {
-    properties: GeneralFormFieldProperties & {
-      value: string;
-      placeholder?: string;
-    };
-  };
+export type GeneralTextFieldComponent<
+  T extends ComponentType,
+  P = object,
+> = GeneralComponent<T> & {
+  properties: GeneralFormFieldProperties & {
+    value: string;
+    placeholder?: string;
+  } & P;
+};
 
-export type InputFieldComponentSchema =
-  GeneralTextFieldComponent<'input-field'>;
+export type InputFieldComponentSchema = GeneralTextFieldComponent<'input'>;
 
-export type EmailFieldComponentSchema =
-  GeneralTextFieldComponent<'email-field'>;
+export type MaskInputFieldComponentSchema = GeneralTextFieldComponent<
+  'mask-input',
+  {
+    mask: string | RegExp;
+    lazy?: boolean;
+    placeholderChar?: string;
+    returnValueType?: 'masked' | 'typed';
+  } & Pick<MaskedRegExp, 'overwrite' | 'eager' | 'skipInvalid' | 'autofix'>
+>;
 
-export type PhoneFieldComponentSchema =
-  GeneralTextFieldComponent<'phone-field'>;
+export type EmailFieldComponentSchema = GeneralTextFieldComponent<'email'>;
+
+export type PhoneFieldComponentSchema = GeneralTextFieldComponent<'phone'>;
 
 export type TextareaFieldComponentSchema =
-  GeneralTextFieldComponent<'textarea-field'>;
+  GeneralTextFieldComponent<'textarea'>;
 
 export type SelectionOption = {
   label: string;
   value: string;
 };
 
-export type SelectFieldComponentSchema = GeneralComponent<'select-field'> & {
+export type SelectFieldComponentSchema = GeneralComponent<'select'> & {
   properties: GeneralFormFieldProperties & {
     placeholder?: string;
     options: SelectionOption[];
@@ -63,15 +84,14 @@ export type SelectFieldComponentSchema = GeneralComponent<'select-field'> & {
   };
 };
 
-export type CheckboxFieldComponentSchema =
-  GeneralComponent<'checkbox-field'> & {
-    properties: GeneralFormFieldProperties & {
-      options: SelectionOption[];
-      value: SelectionOption['value'][];
-    };
+export type CheckboxFieldComponentSchema = GeneralComponent<'checkbox'> & {
+  properties: GeneralFormFieldProperties & {
+    options: SelectionOption[];
+    value: SelectionOption['value'][];
   };
+};
 
-export type RadioFieldComponentSchema = GeneralComponent<'radio-field'> & {
+export type RadioFieldComponentSchema = GeneralComponent<'radio'> & {
   properties: GeneralFormFieldProperties & {
     options: SelectionOption[];
     value: SelectionOption['value'];
@@ -116,6 +136,7 @@ export type ComponentSchemaOptionalId = WithOptionalId<ComponentSchema>;
 
 export type ComponentSchema =
   | InputFieldComponentSchema
+  | MaskInputFieldComponentSchema
   | EmailFieldComponentSchema
   | PhoneFieldComponentSchema
   | TextareaFieldComponentSchema

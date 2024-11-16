@@ -1,1 +1,1 @@
-export const maxColSize = 24;
+export const maxColSpan = 24;

@@ -51,5 +51,15 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        'types': {
+          'Object': false,
+          'Function': false
+        },
+        'extendDefaults': true
+      }
+    ]
   },
 };

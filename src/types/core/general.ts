@@ -1,17 +1,4 @@
-import { maxColSize } from '_consts/layout';
-
-export type ComponentType =
-  | 'input-field'
-  | 'email-field'
-  | 'phone-field'
-  | 'textarea-field'
-  | 'select-field'
-  | 'checkbox-field'
-  | 'radio-field'
-  | 'text'
-  | 'button'
-  | 'group'
-  | 'multifield';
+import { maxColSpan } from '_consts/layout';
 
 export type ResponsiveSizes<T> = {
   default: T;
@@ -46,7 +33,7 @@ export type ColSpan =
   | 21
   | 22
   | 23
-  | typeof maxColSize;
+  | typeof maxColSpan;
 
 export type ComponentLayout = {
   col: ResponsiveSizes<ColSpan>;

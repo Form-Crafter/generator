@@ -1,16 +1,20 @@
-import { FC, memo } from 'react';
+import { forwardRef, memo } from 'react';
 
 import { TextField } from '@mui/material';
 import { InputProps } from '_types';
 
-export const Input: FC<InputProps> = memo(
-  ({
-    meta,
-    properties: { value, placeholder, label, disabled },
-    onChangeProperties,
-  }) => {
+const InputBase = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      meta,
+      properties: { value, placeholder, label, disabled },
+      onChangeProperties,
+    },
+    ref
+  ) => {
     return (
       <TextField
+        ref={ref}
         value={value}
         name={meta.formKey}
         disabled={disabled}
@@ -22,3 +26,7 @@ export const Input: FC<InputProps> = memo(
     );
   }
 );
+
+InputBase.displayName = 'Input';
+
+export const Input = memo(InputBase);
