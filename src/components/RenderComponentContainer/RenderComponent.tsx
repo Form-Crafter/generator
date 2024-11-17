@@ -33,13 +33,14 @@ export const RenderComponent: FC<Props> = ({
       case 'text':
       case 'button':
         return generalProps;
-      case 'checkbox-field':
-      case 'email-field':
-      case 'input-field':
-      case 'phone-field':
-      case 'radio-field':
-      case 'select-field':
-      case 'textarea-field':
+      case 'checkbox':
+      case 'email':
+      case 'input':
+      case 'phone':
+      case 'radio':
+      case 'select':
+      case 'mask-input':
+      case 'textarea':
         return { ...generalProps, onChangeProperties };
       case 'group':
         return { ...generalProps, childTree };

@@ -14,7 +14,7 @@ const InputBase = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     return (
       <TextField
-        ref={ref}
+        inputRef={ref}
         value={value}
         name={meta.formKey}
         disabled={disabled}

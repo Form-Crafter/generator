@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef, memo, useCallback } from 'react';
+import { forwardRef, memo, useCallback } from 'react';
 
 import { useCombinedRefs } from '_hooks/useCombinedRefs';
 import { MaskInputProps } from '_types';
@@ -11,12 +11,16 @@ import { Input } from '../Input';
 // TODO
 // 1. простой пример переопределиния только для указания более тонкой настрйоки
 // imask - это уже будет не компонента mask, конкретный date или другой
-// 2. проверить работу в принципе и работу lazy/placeholderChar с regv и string маской
 
 const MaskInputBase = forwardRef<HTMLInputElement, MaskInputProps>(
   (
     {
-      properties: { returnValueType, ...properties },
+      properties: {
+        returnMaskedValue = false,
+        showMask = true,
+        placeholderChar = '_',
+        ...properties
+      },
       meta,
       onChangeProperties,
       ...props
@@ -30,20 +34,11 @@ const MaskInputBase = forwardRef<HTMLInputElement, MaskInputProps>(
         event?: InputEvent
       ) => {
         if (event?.target) {
-          const changeEvent = event as unknown as ChangeEvent<HTMLInputElement>;
-          let returnValue = maskRef.unmaskedValue;
-
-          if (returnValueType === 'masked') {
-            returnValue = value;
-          } else if (returnValueType === 'typed') {
-            returnValue = maskRef.typedValue;
-          }
-
-          changeEvent.target.value = returnValue;
-          onChangeProperties({ value: returnValue });
+          const finalValue = returnMaskedValue ? value : maskRef.unmaskedValue;
+          onChangeProperties({ value: finalValue });
         }
       },
-      [onChangeProperties, returnValueType]
+      [onChangeProperties, returnMaskedValue]
     );
 
     const {
@@ -53,15 +48,15 @@ const MaskInputBase = forwardRef<HTMLInputElement, MaskInputProps>(
     } = useIMask<HTMLInputElement>(
       {
         mask: properties.mask as RegExp,
-        lazy: properties.lazy,
-        placeholderChar: properties.placeholderChar,
-        autofix: properties.autofix,
+        lazy: !showMask,
+        placeholderChar,
         overwrite: properties.overwrite,
         skipInvalid: properties.skipInvalid,
         eager: properties.eager,
+        autofix: properties.autofix,
       },
       {
-        defaultValue: properties.value.toString() ?? '',
+        defaultValue: properties.value,
         onAccept: handleAccept,
       }
     );

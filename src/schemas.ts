@@ -37,7 +37,7 @@ export const personalSchema: Schema = {
         {
           meta: {
             id: '1-1',
-            componentType: 'input-field',
+            componentType: 'input',
             formKey: 'first-name',
             layout: {
               col: {
@@ -55,7 +55,7 @@ export const personalSchema: Schema = {
         {
           meta: {
             id: '1-2',
-            componentType: 'input-field',
+            componentType: 'input',
             formKey: 'last-name',
             layout: {
               col: {
@@ -73,7 +73,7 @@ export const personalSchema: Schema = {
         {
           meta: {
             id: '1-3',
-            componentType: 'email-field',
+            componentType: 'email',
             formKey: 'email',
             layout: {
               col: {
@@ -104,7 +104,7 @@ export const personalSchema: Schema = {
         {
           meta: {
             id: '2-1',
-            componentType: 'select-field',
+            componentType: 'select',
             formKey: 'favorite-color',
             layout: {
               col: {
@@ -126,7 +126,7 @@ export const personalSchema: Schema = {
         {
           meta: {
             id: '2-2',
-            componentType: 'checkbox-field',
+            componentType: 'checkbox',
             formKey: 'subscribe',
             layout: {
               col: {
@@ -146,7 +146,7 @@ export const personalSchema: Schema = {
         {
           meta: {
             id: '2-3',
-            componentType: 'radio-field',
+            componentType: 'radio',
             formKey: 'sex',
             layout: {
               col: {
@@ -168,7 +168,7 @@ export const personalSchema: Schema = {
     {
       meta: {
         id: '3',
-        componentType: 'phone-field',
+        componentType: 'mask-input',
         formKey: 'phone',
         layout: {
           col: {
@@ -177,9 +177,11 @@ export const personalSchema: Schema = {
         },
       },
       properties: {
+        mask: /^\d+$/,
         label: 'Phone Number',
-        value: '+1234567890',
+        value: '',
         placeholder: 'Enter your phone number',
+        showMask: true,
       },
     },
     {
@@ -196,7 +198,7 @@ export const personalSchema: Schema = {
         template: [
           {
             meta: {
-              componentType: 'input-field',
+              componentType: 'input',
               formKey: 'name',
               layout: {
                 col: { default: 12 },
@@ -210,7 +212,7 @@ export const personalSchema: Schema = {
           },
           {
             meta: {
-              componentType: 'phone-field',
+              componentType: 'phone',
               formKey: 'phone',
               layout: {
                 col: { default: 12 },
@@ -224,7 +226,7 @@ export const personalSchema: Schema = {
           },
           {
             meta: {
-              componentType: 'email-field',
+              componentType: 'email',
               formKey: 'email',
               layout: {
                 col: { default: 12 },
@@ -238,7 +240,7 @@ export const personalSchema: Schema = {
           },
           {
             meta: {
-              componentType: 'select-field',
+              componentType: 'select',
               formKey: 'city',
               layout: {
                 col: { default: 12 },
@@ -278,7 +280,7 @@ export const personalSchema: Schema = {
               template: [
                 {
                   meta: {
-                    componentType: 'input-field',
+                    componentType: 'input',
                     formKey: 'social-name',
                     layout: {
                       col: { default: 12 },
@@ -292,7 +294,7 @@ export const personalSchema: Schema = {
                 },
                 {
                   meta: {
-                    componentType: 'input-field',
+                    componentType: 'input',
                     formKey: 'social-link',
                     layout: {
                       col: { default: 12 },
@@ -313,7 +315,7 @@ export const personalSchema: Schema = {
     {
       meta: {
         id: '4',
-        componentType: 'textarea-field',
+        componentType: 'textarea',
         formKey: 'article',
         layout: {
           col: {

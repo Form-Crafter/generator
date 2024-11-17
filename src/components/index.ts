@@ -13,16 +13,18 @@ import {
   Textarea,
   Multifield,
 } from './elements';
+import { MaskInput } from './elements/MaskInput';
 import { Generator } from './Generator';
 
 export const defaultComponentsView: Required<ComponentsView> = {
-  'input-field': Input,
-  'email-field': Email,
-  'phone-field': Phone,
-  'textarea-field': Textarea,
-  'select-field': Select,
-  'checkbox-field': Checkbox,
-  'radio-field': Radio,
+  input: Input,
+  'mask-input': MaskInput,
+  email: Email,
+  phone: Phone,
+  textarea: Textarea,
+  select: Select,
+  checkbox: Checkbox,
+  radio: Radio,
   group: Group,
   multifield: Multifield,
   button: Button,

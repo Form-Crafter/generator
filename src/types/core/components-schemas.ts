@@ -58,9 +58,9 @@ export type MaskInputFieldComponentSchema = GeneralTextFieldComponent<
   'mask-input',
   {
     mask: string | RegExp;
-    lazy?: boolean;
+    showMask?: boolean;
     placeholderChar?: string;
-    returnValueType?: 'masked' | 'typed';
+    returnMaskedValue?: boolean;
   } & Pick<MaskedRegExp, 'overwrite' | 'eager' | 'skipInvalid' | 'autofix'>
 >;
 
