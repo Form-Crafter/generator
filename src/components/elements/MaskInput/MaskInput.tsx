@@ -8,25 +8,22 @@ import { useIMask } from 'react-imask';
 
 import { Input } from '../Input';
 
-// TODO
-// 1. простой пример переопределиния только для указания более тонкой настрйоки
-// imask - это уже будет не компонента mask, конкретный date или другой
+// 2. async set value ВЕЗДЕ ПРОВЕРИТЬ
+// Латинские буквы, цифры и нижнее подчеркивание.
+// можно ли сделать n.nn формат?
 
 const MaskInputBase = forwardRef<HTMLInputElement, MaskInputProps>(
   (
     {
-      properties: {
-        returnMaskedValue = false,
-        showMask = true,
-        placeholderChar = '_',
-        ...properties
-      },
+      properties: { maskOptions, ...properties },
       meta,
       onChangeProperties,
       ...props
     },
     rootRef
   ) => {
+    const { returnMaskedValue } = maskOptions;
+
     const handleAccept = useCallback(
       (
         value: string,
@@ -45,21 +42,10 @@ const MaskInputBase = forwardRef<HTMLInputElement, MaskInputProps>(
       ref,
       value: maskedValue,
       setValue,
-    } = useIMask<HTMLInputElement>(
-      {
-        mask: properties.mask as RegExp,
-        lazy: !showMask,
-        placeholderChar,
-        overwrite: properties.overwrite,
-        skipInvalid: properties.skipInvalid,
-        eager: properties.eager,
-        autofix: properties.autofix,
-      },
-      {
-        defaultValue: properties.value,
-        onAccept: handleAccept,
-      }
-    );
+    } = useIMask<HTMLInputElement>(maskOptions, {
+      defaultValue: properties.value,
+      onAccept: handleAccept,
+    });
 
     const handleChange = useCallback<typeof onChangeProperties>(
       ({ value, ...params }) => {

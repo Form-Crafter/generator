@@ -1,5 +1,5 @@
 import { defaultComponentsView } from '_components';
-import { ComponentsView, ComponentType } from '_types';
+import { ComponentsView } from '_types';
 import { sample } from 'effector';
 
 import { setComponentsViewEvent, $componentsView } from '.';
@@ -13,8 +13,7 @@ sample({
 
     for (const key in defaultComponentsView) {
       if (!(key in finalMap)) {
-        const finalKey = key as ComponentType;
-        finalMap[finalKey] = defaultComponentsView[finalKey];
+        finalMap[key] = defaultComponentsView[key];
       }
     }
 

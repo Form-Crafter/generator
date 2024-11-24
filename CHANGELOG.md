@@ -1,23 +1,36 @@
-## 1.2.0
+# 1.n.n
+- AsyncSelect/IntinitySelect (проблема с edit при наличии только id)
 
-### Added
+- Uplaod files and remote components
 
-1. Connection components with store, impl register custom components, lint sort imports
+# 1.5.0
 
-## 1.1.0
+- Impl validation system (including connect custom rules), isRequired, minLength, maxLength, isNumber rules.
 
-### Added
+# 1.4.0 --- DONE
 
-1. Grid system
+- Impl MaskInput, Date, Time. Remove Phone field
 
-### Updated
+# 1.3.0 --- DONE
 
-1. Fix markup components
+- Impl multifield;
 
-## 1.0.0
+# 1.2.0 --- DONE
 
-### Added
+- Link components with data storage (dynamic components);
 
-1. Init project;
-2. Simple generation components;
-3. Simple components: Input, Email, Phone, Select, Checkbox, Radio, Textarea, Text, Button, Group;
+- Impl sistem of add custom components;
+
+- Eslint import order;
+
+# 1.1.0 --- DONE
+
+- Upgrade  current components;
+
+- Impl grid system;
+
+- Impl col gap & row gap;
+
+# 1.0.0 --- DONE
+
+- Single impl fields: Input, Email, Phone, Select, Checkbox, Radio, Textarea, Text, Button, Group.

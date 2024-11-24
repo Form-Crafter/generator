@@ -11,49 +11,46 @@ import {
   TextComponentSchema,
   TextareaFieldComponentSchema,
   EmailFieldComponentSchema,
-  PhoneFieldComponentSchema,
   ComponentSchema,
   MultifieldComponentSchema,
   ComponentId,
   MaskInputFieldComponentSchema,
+  DateFieldComponentSchema,
+  TimeFieldComponentSchema,
 } from '../core/components-schemas';
 
 type GeneralComponentProps<T extends ComponentSchema> = Pick<
   T,
   'meta' | 'properties'
 > &
-  Pick<TreeNode, 'parentId'>;
-
-export type StaticComponentProps<T extends ComponentSchema> =
-  GeneralComponentProps<T>;
-
-export type DynamicComponentProps<T extends ComponentSchema> =
-  GeneralComponentProps<T> & {
+  Pick<TreeNode, 'parentId'> & {
     onChangeProperties: (changes: Partial<T['properties']>) => void;
   };
 
-export type CheckboxProps = DynamicComponentProps<CheckboxFieldComponentSchema>;
+export type CheckboxProps = GeneralComponentProps<CheckboxFieldComponentSchema>;
 
-export type EmailProps = DynamicComponentProps<EmailFieldComponentSchema>;
+export type EmailProps = GeneralComponentProps<EmailFieldComponentSchema>;
 
-export type InputProps = DynamicComponentProps<InputFieldComponentSchema>;
+export type InputProps = GeneralComponentProps<InputFieldComponentSchema>;
 
 export type MaskInputProps =
-  DynamicComponentProps<MaskInputFieldComponentSchema>;
+  GeneralComponentProps<MaskInputFieldComponentSchema>;
 
-export type PhoneProps = DynamicComponentProps<PhoneFieldComponentSchema>;
+export type DateProps = GeneralComponentProps<DateFieldComponentSchema>;
 
-export type RadioProps = DynamicComponentProps<RadioFieldComponentSchema>;
+export type TimeProps = GeneralComponentProps<TimeFieldComponentSchema>;
 
-export type SelectProps = DynamicComponentProps<SelectFieldComponentSchema>;
+export type RadioProps = GeneralComponentProps<RadioFieldComponentSchema>;
 
-export type TextareaProps = DynamicComponentProps<TextareaFieldComponentSchema>;
+export type SelectProps = GeneralComponentProps<SelectFieldComponentSchema>;
 
-export type ButtonProps = StaticComponentProps<ButtonComponentSchema>;
+export type TextareaProps = GeneralComponentProps<TextareaFieldComponentSchema>;
 
-export type TextProps = StaticComponentProps<TextComponentSchema>;
+export type ButtonProps = GeneralComponentProps<ButtonComponentSchema>;
 
-export type GroupProps = StaticComponentProps<GroupComponentSchema> & {
+export type TextProps = GeneralComponentProps<TextComponentSchema>;
+
+export type GroupProps = GeneralComponentProps<GroupComponentSchema> & {
   childTree: ComponentsTree;
   renderTitle?: (
     props: Pick<GroupComponentSchema, 'meta' | 'properties'>
@@ -61,7 +58,7 @@ export type GroupProps = StaticComponentProps<GroupComponentSchema> & {
 };
 
 export type MultifieldProps =
-  DynamicComponentProps<MultifieldComponentSchema> & {
+  GeneralComponentProps<MultifieldComponentSchema> & {
     childTree?: ComponentsTree;
     onAddGroup: () => void;
     onRemoveGroup: (props: { groupId: ComponentId }) => void;

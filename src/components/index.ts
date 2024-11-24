@@ -6,12 +6,13 @@ import {
   Checkbox,
   Email,
   Input,
-  Phone,
   Radio,
   Select,
   Text,
   Textarea,
   Multifield,
+  DateInput,
+  TimeInput,
 } from './elements';
 import { MaskInput } from './elements/MaskInput';
 import { Generator } from './Generator';
@@ -19,8 +20,9 @@ import { Generator } from './Generator';
 export const defaultComponentsView: Required<ComponentsView> = {
   input: Input,
   'mask-input': MaskInput,
+  date: DateInput,
+  time: TimeInput,
   email: Email,
-  phone: Phone,
   textarea: Textarea,
   select: Select,
   checkbox: Checkbox,
@@ -38,7 +40,6 @@ export {
   Checkbox,
   Email,
   Input,
-  Phone,
   Radio,
   Select,
   Text,

@@ -167,21 +167,37 @@ export const personalSchema: Schema = {
     },
     {
       meta: {
-        id: '3',
-        componentType: 'mask-input',
-        formKey: 'phone',
+        id: '3date',
+        componentType: 'date',
+        formKey: 'date',
         layout: {
           col: {
-            default: 24,
+            default: 8,
           },
         },
       },
       properties: {
-        mask: /^\d+$/,
-        label: 'Phone Number',
-        value: '',
-        placeholder: 'Enter your phone number',
         showMask: true,
+        label: 'Date',
+        value: '',
+      },
+    },
+    {
+      meta: {
+        id: '3time',
+        componentType: 'time',
+        formKey: 'time',
+        layout: {
+          col: {
+            default: 8,
+          },
+        },
+      },
+      properties: {
+        showMask: true,
+        label: 'Time',
+        value: '',
+        placeholder: 'Enter your time',
       },
     },
     {
@@ -208,20 +224,6 @@ export const personalSchema: Schema = {
               label: 'Name',
               value: '',
               placeholder: 'Enter your name',
-            },
-          },
-          {
-            meta: {
-              componentType: 'phone',
-              formKey: 'phone',
-              layout: {
-                col: { default: 12 },
-              },
-            },
-            properties: {
-              label: 'Phone Number',
-              value: '',
-              placeholder: 'Enter your phone number',
             },
           },
           {

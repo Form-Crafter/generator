@@ -13,7 +13,7 @@ export function RenderComponentContainer<T extends TreeNode>({
 
   if (!Component) {
     // TODO impl placeholder component
-    return null;
+    return <h4>Component not exist</h4>;
   }
 
   return <RenderComponent id={id} Component={Component} {...props} />;

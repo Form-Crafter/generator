@@ -30,18 +30,6 @@ export const RenderComponent: FC<Props> = ({
     const generalProps = { meta, properties, parentId };
 
     switch (meta.componentType) {
-      case 'text':
-      case 'button':
-        return generalProps;
-      case 'checkbox':
-      case 'email':
-      case 'input':
-      case 'phone':
-      case 'radio':
-      case 'select':
-      case 'mask-input':
-      case 'textarea':
-        return { ...generalProps, onChangeProperties };
       case 'group':
         return { ...generalProps, childTree };
       case 'multifield':
@@ -53,7 +41,7 @@ export const RenderComponent: FC<Props> = ({
           onRemoveGroup: removeMultifieldGroupEvent,
         };
       default:
-        return generalProps;
+        return { ...generalProps, onChangeProperties };
     }
   }, [id, meta, properties, parentId, childTree]);
 

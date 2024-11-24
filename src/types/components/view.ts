@@ -4,7 +4,6 @@ import {
   InputProps,
   CheckboxProps,
   EmailProps,
-  PhoneProps,
   RadioProps,
   SelectProps,
   TextareaProps,
@@ -13,13 +12,16 @@ import {
   MultifieldProps,
   ButtonProps,
   MaskInputProps,
+  DateProps,
+  TimeProps,
 } from './props';
 
 export type ComponentsView = Partial<{
   input: FC<InputProps>;
   'mask-input': FC<MaskInputProps>;
+  date: FC<DateProps>;
+  time: FC<TimeProps>;
   email: FC<EmailProps>;
-  phone: FC<PhoneProps>;
   textarea: FC<TextareaProps>;
   select: FC<SelectProps>;
   checkbox: FC<CheckboxProps>;

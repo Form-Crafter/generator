@@ -1,12 +1,13 @@
-import { MaskedRegExp } from 'imask';
+import { FactoryOpts } from 'imask';
 
 import { ComponentLayout } from './general';
 
 export type ComponentType =
   | 'input'
   | 'mask-input'
+  | 'date'
+  | 'time'
   | 'email'
-  | 'phone'
   | 'textarea'
   | 'select'
   | 'checkbox'
@@ -30,8 +31,8 @@ export type GeneralComponent<T extends ComponentType> = {
   meta: {
     id: ComponentId;
     componentType: T;
-    formKey?: string;
     layout: ComponentLayout;
+    formKey?: string;
   };
   validation?: any;
   relations?: RelationsSchema;
@@ -57,16 +58,28 @@ export type InputFieldComponentSchema = GeneralTextFieldComponent<'input'>;
 export type MaskInputFieldComponentSchema = GeneralTextFieldComponent<
   'mask-input',
   {
-    mask: string | RegExp;
+    maskOptions: FactoryOpts & {
+      returnMaskedValue?: boolean;
+    };
+  }
+>;
+
+export type DateFieldComponentSchema = GeneralTextFieldComponent<
+  'date',
+  {
     showMask?: boolean;
-    placeholderChar?: string;
-    returnMaskedValue?: boolean;
-  } & Pick<MaskedRegExp, 'overwrite' | 'eager' | 'skipInvalid' | 'autofix'>
+    pattern?: string;
+  }
+>;
+
+export type TimeFieldComponentSchema = GeneralTextFieldComponent<
+  'time',
+  {
+    showMask?: boolean;
+  }
 >;
 
 export type EmailFieldComponentSchema = GeneralTextFieldComponent<'email'>;
-
-export type PhoneFieldComponentSchema = GeneralTextFieldComponent<'phone'>;
 
 export type TextareaFieldComponentSchema =
   GeneralTextFieldComponent<'textarea'>;
@@ -137,8 +150,9 @@ export type ComponentSchemaOptionalId = WithOptionalId<ComponentSchema>;
 export type ComponentSchema =
   | InputFieldComponentSchema
   | MaskInputFieldComponentSchema
+  | DateFieldComponentSchema
+  | TimeFieldComponentSchema
   | EmailFieldComponentSchema
-  | PhoneFieldComponentSchema
   | TextareaFieldComponentSchema
   | SelectFieldComponentSchema
   | CheckboxFieldComponentSchema
