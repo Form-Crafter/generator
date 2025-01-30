@@ -1,6 +1,6 @@
-import { GeneratorProvider } from 'contexts'
 import { FC, memo, useRef } from 'react'
 
+import { GeneratorProvider } from '_contexts'
 import { createRootServices } from '_services'
 import { GeneratorProps } from '_types'
 

@@ -52,6 +52,12 @@
       "_types/*": [
         "types/*"
       ],
+      "_styles": [
+        "styles"
+      ],
+      "_styles/*": [
+        "styles/*"
+      ],
       "_utils": [
         "utils"
       ],

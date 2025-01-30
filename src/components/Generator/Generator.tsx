@@ -1,7 +1,7 @@
-import { GeneratorProvider, useGenerator } from 'contexts'
 import { FC, FormEvent, memo, useCallback } from 'react'
 
 import { GridComponent } from '_components/GridComponent'
+import { GeneratorProvider, useGenerator } from '_contexts'
 import { useCurrentView } from '_hooks'
 
 import { useGeneratorStylesVars } from './hooks'

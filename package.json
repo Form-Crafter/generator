@@ -1,7 +1,7 @@
 {
   "name": "@form-crafter/generator",
   "author": "Form Crafter",
-  "version": "1.5.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -41,7 +41,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "sass": "^1.77.8",
+    "sass": "^1.83.4",
     "vite": "^5.3.1",
     "vite-plugin-dts": "^4.5.0"
   },
