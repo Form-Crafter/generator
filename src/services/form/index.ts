@@ -1,21 +1,27 @@
-import { GeneratorProps } from '_types';
-import { attach, createEvent, createStore } from 'effector';
+import { attach, createEvent, createStore } from 'effector'
 
-export const $userSubmitHandler = createStore<
-  GeneratorProps['onSubmit'] | null
->(null);
+import { GeneratorProps } from '_types'
 
-export const invokeUserSubmitHandlerFx = attach({
-  source: $userSubmitHandler,
-  effect: (handler, data: Parameters<GeneratorProps['onSubmit']>[0]) => {
-    handler!(data);
-  },
-});
+import { init } from './init'
+import { FormService, FormServiceParams, InvokeUserSubmitHandlerData } from './types'
 
-export const setUserSubmitHandlerEvent = createEvent<
-  GeneratorProps['onSubmit']
->('setUserSubmitHandlerEvent');
+export const createFormService = ({ onSubmit }: FormServiceParams): FormService => {
+    const $userSubmitHandler = createStore<GeneratorProps['onSubmit']>(onSubmit)
 
-export const onFormSubmitEvent = createEvent('onFormSubmitEvent');
+    const invokeUserSubmitHandlerFx = attach({
+        source: $userSubmitHandler,
+        effect: (handler, data: InvokeUserSubmitHandlerData) => {
+            handler!(data)
+        },
+    })
 
-$userSubmitHandler.on(setUserSubmitHandlerEvent, (_, handler) => handler);
+    const onFormSubmitEvent = createEvent('onFormSubmitEvent')
+
+    init({})
+
+    return {
+        $userSubmitHandler,
+        invokeUserSubmitHandlerFx,
+        onFormSubmitEvent,
+    }
+}

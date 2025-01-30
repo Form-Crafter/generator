@@ -1,13 +1,17 @@
-import { SchemaLayout, Schema } from '_types';
+import { SchemaLayout } from '@form-crafter/core'
 
-import { defaultLayout } from './consts';
-import { getStyleVariables } from './utils';
+import { useGeneratorLayout } from '_hooks'
 
-export const useGeneratorStylesVars = (schemaLayout: Schema['layout']) => {
-  const finalSchemaLayout: Required<SchemaLayout> = {
-    rowsSpanPx: schemaLayout?.rowsSpanPx || defaultLayout.rowsSpanPx,
-    colsSpanPx: schemaLayout?.colsSpanPx || defaultLayout.colsSpanPx,
-  };
+import { defaultLayout } from './consts'
+import { getStyleVariables } from './utils'
 
-  return getStyleVariables(finalSchemaLayout);
-};
+export const useGeneratorStylesVars = () => {
+    const layout = useGeneratorLayout()
+
+    const finalSchemaLayout: Required<SchemaLayout> = {
+        rowsSpanPx: layout?.rowsSpanPx || defaultLayout.rowsSpanPx,
+        colsSpanPx: layout?.colsSpanPx || defaultLayout.colsSpanPx,
+    }
+
+    return getStyleVariables(finalSchemaLayout)
+}

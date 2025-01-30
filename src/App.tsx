@@ -1,25 +1,22 @@
-import { FC, memo } from 'react';
+import { FormCrafterProvider, Schema } from '@form-crafter/core'
+import { muiTheme } from '@form-crafter/themes'
+import { Container, Paper } from '@mui/material'
+import { FC } from 'react'
 
-import { Container, Paper } from '@mui/material';
-import { Generator } from '_components';
-import { ComponentsView } from '_types/components';
+import { Generator } from '_components'
 
-import { personalSchema } from './schemas';
+// import { personalSchema } from './mock-schemas'
 
-import '_services/init.ts';
+const PlaceholderComponent: FC = () => <div>Not found component</div>
 
-const componentsView: ComponentsView = {};
-
-export const App: FC = memo(() => {
-  return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Generator
-          onSubmit={(data) => console.log(data)}
-          schema={personalSchema}
-          componentsView={componentsView}
-        />
-      </Paper>
-    </Container>
-  );
-});
+export const App: FC = () => {
+    return (
+        <FormCrafterProvider theme={muiTheme} PlaceholderComponent={PlaceholderComponent}>
+            <Container maxWidth="md" sx={{ mt: 4 }}>
+                <Paper elevation={3} sx={{ p: 4 }}>
+                    <Generator onSubmit={(data) => console.log(data)} schema={{} as Schema} />
+                </Paper>
+            </Container>
+        </FormCrafterProvider>
+    )
+}

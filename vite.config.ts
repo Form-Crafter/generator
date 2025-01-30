@@ -1,17 +1,29 @@
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
+
+import aliases from './aliases.json'
+
+const getAlias = (path: string) => resolve(__dirname, path)
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      _components: '/src/components',
-      _utils: '/src/utils',
-      _types: '/src/types',
-      _services: '/src/services',
-      _styles: '/src/styles',
-      _consts: '/src/consts',
-      _hooks: '/src/hooks',
+    build: {
+        outDir: './dist',
+        lib: {
+            entry: resolve(__dirname, 'src/index.ts'),
+            fileName: 'index',
+            formats: ['es'],
+        },
+        target: ['esnext'],
     },
-  },
-  plugins: [react()],
-});
+    resolve: {
+        alias: Object.entries(aliases).reduce(
+            (res, [key, value]) => ({
+                ...res,
+                [key]: getAlias(`src/${value}`),
+            }),
+            {},
+        ),
+    },
+    plugins: [dts()],
+})

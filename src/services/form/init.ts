@@ -1,9 +1,10 @@
-import { sample } from 'effector';
+// import { Effect, EventCallable } from 'effector'
 
-import { onFormSubmitEvent, invokeUserSubmitHandlerFx } from '.';
+// import { GeneratorProps } from '_types'
 
-sample({
-  clock: onFormSubmitEvent,
-  fn: () => ({ test: 'string' }),
-  target: invokeUserSubmitHandlerFx,
-});
+type Params = {
+    // invokeUserSubmitHandlerFx: Effect<Parameters<GeneratorProps['onSubmit']>[0], void, Error>
+    // onFormSubmitEvent: EventCallable<void>
+}
+
+export const init = ({}: Params) => {}

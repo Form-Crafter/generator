@@ -1,50 +1,49 @@
 {
-  "name": "business-form-generator",
-  "private": true,
-  "version": "1.4.0",
+  "name": "@form-crafter/generator",
+  "author": "Form Crafter",
+  "version": "1.5.0",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "format": "prettier --write .",
-    "lint": "npm run tsc && eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0 && npm run format",
     "preview": "vite preview",
-    "tsc": "tsc --noEmit"
+    "configs": "dev-configs-install",
+    "aliases": "dev-configs-aliases",
+    "prepare": "husky",
+    "format": "prettier --write ./src --config",
+    "lint": "run-s lint:*",
+    "lint:eslint": "eslint -c ./eslint.config.js .",
+    "lint:tsc": "tsc --p ./tsconfig.json --noEmit true --emitDeclarationOnly false",
+    "fix": "npm run lint:eslint -- --fix && npm run lint:tsc",
+    "pub": "npm run build & npm publish"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@fontsource/roboto": "^5.0.13",
-    "@mui/icons-material": "^5.16.1",
-    "@mui/material": "^5.16.1",
+    "@form-crafter/core": "^0.1.11",
+    "@form-crafter/themes": "^0.1.0",
+    "@form-crafter/utils": "^0.0.12",
     "classnames": "^2.5.1",
     "effector": "^23.2.2",
     "effector-react": "^23.2.1",
-    "imask": "^7.6.1",
-    "libphonenumber-js": "^1.11.15",
     "nanoid": "^5.0.7",
-    "patronum": "^2.2.0",
+    "patronum": "^2.2.0"
+  },
+  "peerDependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-imask": "^7.6.1",
-    "yup": "^1.4.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20.14.11",
+    "@form-crafter/dev-configs": "^0.3.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "prettier": "^3.3.3",
     "sass": "^1.77.8",
-    "typescript": "^5.2.2",
-    "vite": "^5.3.1"
-  }
+    "vite": "^5.3.1",
+    "vite-plugin-dts": "^4.5.0"
+  },
+  "prettier": "@form-crafter/dev-configs/dist/prettier.json"
 }

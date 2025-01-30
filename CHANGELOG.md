@@ -1,11 +1,20 @@
 # 1.n.n
+
 - AsyncSelect/IntinitySelect (проблема с edit при наличии только id)
 
 - Uplaod files and remote components
 
+# 1.n.n
+
+- Table, Tab components
+
 # 1.5.0
 
+- Add NumberInput.
+
 - Impl validation system (including connect custom rules), isRequired, minLength, maxLength, isNumber rules.
+
+- Impl relations system (including connect custom relations), disableIf, hideIf relations.
 
 # 1.4.0 --- DONE
 
@@ -25,7 +34,7 @@
 
 # 1.1.0 --- DONE
 
-- Upgrade  current components;
+- Upgrade current components;
 
 - Impl grid system;
 

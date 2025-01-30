@@ -1,1 +1,1 @@
-export * from './Generator';
+export { GeneratorWithProvider as Generator } from './GeneratorWithProvider'
