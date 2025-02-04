@@ -1,5 +1,5 @@
 import { Schema } from '@form-crafter/core'
-import { EventCallable, StoreWritable } from 'effector'
+import { StoreWritable } from 'effector'
 
 import { MetaService } from './meta/types'
 import { PropertiesService } from './properties/types'
@@ -9,7 +9,6 @@ import { ViewsService } from './views/types'
 
 export type SchemaService = {
     $schema: StoreWritable<Schema>
-    setFullSchemaEvent: EventCallable<Schema>
     propertiesService: PropertiesService
     metaService: MetaService
     viewsService: ViewsService

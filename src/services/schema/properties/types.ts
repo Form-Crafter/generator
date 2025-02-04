@@ -1,4 +1,4 @@
-import { ComponentId, Schema } from '@form-crafter/core'
+import { ComponentId } from '@form-crafter/core'
 import { SomeObject } from '@form-crafter/utils'
 import { EventCallable, StoreWritable } from 'effector'
 
@@ -18,5 +18,5 @@ export type PropertiesService = {
 }
 
 export type PropertiesServiceParams = {
-    runSplitSchemaEvent: EventCallable<Schema>
+    initial: ComponentsProperties
 }

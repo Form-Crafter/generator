@@ -7,7 +7,7 @@ import {
 } from '@form-crafter/core'
 import { SomeObject } from '@form-crafter/utils'
 import { useUnit } from 'effector-react'
-import { FC, memo, useMemo } from 'react'
+import { FC, memo, useCallback } from 'react'
 
 import { useGenerator } from '_contexts'
 import { useComponentMeta, useComponentProperties, useViewComponent } from '_hooks'
@@ -22,9 +22,12 @@ export const ResolverComponent: ResolverComponentType = memo(({ componentId: id,
     const meta = useComponentMeta(id)
     const properties = useComponentProperties(id)
 
-    const finalProps = useMemo(() => {
-        const onChangeProperties = (data: Partial<ComponentSchema['properties']>) => updateComponentPropertiesEvent({ id, data })
+    const onChangeProperties = useCallback(
+        (data: Partial<ComponentSchema['properties']>) => updateComponentPropertiesEvent({ id, data }),
+        [id, updateComponentPropertiesEvent],
+    )
 
+    const finalProps = (() => {
         switch (meta.type) {
             case 'base':
                 return ((params: BaseComponentProps<SomeObject>) => params)({ meta, properties, onChangeProperties })
@@ -49,7 +52,7 @@ export const ResolverComponent: ResolverComponentType = memo(({ componentId: id,
                     onRemoveGroup: () => console.log('onRemoveGroup'),
                 })
         }
-    }, [meta, properties, updateComponentPropertiesEvent, id, children])
+    })()
 
     return <Component {...extraProps} {...finalProps} />
 })

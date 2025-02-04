@@ -9,8 +9,8 @@ import {
     UpdateComponentPropertiesPayload,
 } from './types'
 
-export const createPropertiesService = ({ runSplitSchemaEvent }: PropertiesServiceParams): PropertiesService => {
-    const $componentsProperties = createStore<ComponentsProperties>({})
+export const createPropertiesService = ({ initial }: PropertiesServiceParams): PropertiesService => {
+    const $componentsProperties = createStore<ComponentsProperties>(initial)
 
     const updateComponentPropertiesEvent = createEvent<UpdateComponentPropertiesPayload>('updateComponentPropertiesEvent')
 
@@ -23,7 +23,7 @@ export const createPropertiesService = ({ runSplitSchemaEvent }: PropertiesServi
         [id]: { ...cur[id], ...data },
     }))
 
-    init({ runSplitSchemaEvent, setComponentsPropertiesEvent })
+    init({})
 
     return {
         $componentsProperties,

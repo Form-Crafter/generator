@@ -5,7 +5,7 @@ import { FC } from 'react'
 
 import { Generator } from '_components'
 
-// import { personalSchema } from './mock-schemas'
+import { employeeFormSchema } from './mock-schemas'
 
 const PlaceholderComponent: FC = () => <div>Not found component</div>
 
@@ -14,7 +14,7 @@ export const App: FC = () => {
         <FormCrafterProvider theme={muiTheme} PlaceholderComponent={PlaceholderComponent}>
             <Container maxWidth="md" sx={{ mt: 4 }}>
                 <Paper elevation={3} sx={{ p: 4 }}>
-                    <Generator onSubmit={(data) => console.log(data)} schema={{} as Schema} />
+                    <Generator onSubmit={(data) => console.log(data)} schema={employeeFormSchema as Schema} />
                 </Paper>
             </Container>
         </FormCrafterProvider>

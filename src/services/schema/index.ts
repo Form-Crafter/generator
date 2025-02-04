@@ -1,11 +1,12 @@
 import { Schema } from '@form-crafter/core'
-import { createEvent, createStore } from 'effector'
+import { createStore } from 'effector'
 
 import { init } from './init'
 import { createMetaService } from './meta'
 import { createPropertiesService } from './properties'
 import { createRelationsService } from './relations'
 import { SchemaService, SchemaServiceParams } from './types'
+import { splitSchema } from './utils'
 import { createValidationsService } from './validations'
 import { createViewsService } from './views'
 
@@ -21,26 +22,21 @@ const getInitialSchema = (): Schema => ({
     relationsRules: [],
 })
 
-export const createSchemaService = ({ schema: initialSchema = getInitialSchema() }: SchemaServiceParams): SchemaService => {
-    const $schema = createStore<Schema>(initialSchema)
+export const createSchemaService = ({ schema = getInitialSchema() }: SchemaServiceParams): SchemaService => {
+    const $schema = createStore<Schema>(schema)
 
-    const setFullSchemaEvent = createEvent<Schema>('setFullSchemaEvent')
+    const { views, meta, properties, relations, validations } = splitSchema(schema)
 
-    const runSplitSchemaEvent = createEvent<Schema>('runSplitSchemaEvent')
+    const viewsService = createViewsService({ initial: views })
+    const metaService = createMetaService({ initial: meta })
+    const propertiesService = createPropertiesService({ initial: properties })
+    const relationsService = createRelationsService({ initial: relations })
+    const validationsService = createValidationsService({ initial: validations })
 
-    $schema.on(setFullSchemaEvent, (_, data) => data)
-
-    init({ setFullSchemaEvent, runSplitSchemaEvent })
-
-    const viewsService = createViewsService({ runSplitSchemaEvent })
-    const metaService = createMetaService({ runSplitSchemaEvent })
-    const propertiesService = createPropertiesService({ runSplitSchemaEvent })
-    const relationsService = createRelationsService({ runSplitSchemaEvent })
-    const validationsService = createValidationsService({ runSplitSchemaEvent })
+    init({})
 
     return {
         $schema,
-        setFullSchemaEvent,
         viewsService,
         propertiesService,
         metaService,

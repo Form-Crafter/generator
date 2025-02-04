@@ -1,5 +1,7 @@
-import { ViewsServiceParams } from '../views/types'
+import { SomeObject } from '@form-crafter/utils'
 
-type Params = Pick<ViewsServiceParams, 'runSplitSchemaEvent'>
+type Params = {
+    initial: SomeObject
+}
 
 export const init = ({}: Params) => {}

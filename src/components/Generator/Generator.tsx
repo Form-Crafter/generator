@@ -1,7 +1,7 @@
 import { FC, FormEvent, memo, useCallback } from 'react'
 
 import { GridComponent } from '_components/GridComponent'
-import { GeneratorProvider, useGenerator } from '_contexts'
+import { useGenerator } from '_contexts'
 import { useCurrentView } from '_hooks'
 
 import { useGeneratorStylesVars } from './hooks'
@@ -23,11 +23,9 @@ export const Generator: FC = memo(() => {
     )
 
     return (
-        <GeneratorProvider services={services}>
-            <form onSubmit={handleSubmit} className={styles.root} style={stylesVars}>
-                <GridComponent viewTree={viewTree} />
-            </form>
-        </GeneratorProvider>
+        <form onSubmit={handleSubmit} className={styles.root} style={stylesVars}>
+            <GridComponent viewTree={viewTree} />
+        </form>
     )
 })
 

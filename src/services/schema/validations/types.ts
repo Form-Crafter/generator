@@ -1,8 +1,7 @@
-import { Schema } from '@form-crafter/core'
-import { EventCallable } from 'effector'
+import { SomeObject } from '@form-crafter/utils'
 
 export type ValidationsService = {}
 
 export type ValidationsServiceParams = {
-    runSplitSchemaEvent: EventCallable<Schema>
+    initial: SomeObject
 }

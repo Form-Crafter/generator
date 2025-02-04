@@ -1,5 +1,5 @@
-import { ComponentId, ComponentSchema, Schema } from '@form-crafter/core'
-import { EventCallable, StoreWritable } from 'effector'
+import { ComponentId, ComponentSchema } from '@form-crafter/core'
+import { StoreWritable } from 'effector'
 
 export type ComponentsMeta = Record<ComponentId, ComponentSchema['meta']>
 
@@ -8,5 +8,5 @@ export type MetaService = {
 }
 
 export type MetaServiceParams = {
-    runSplitSchemaEvent: EventCallable<Schema>
+    initial: ComponentsMeta
 }

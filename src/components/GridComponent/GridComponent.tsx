@@ -6,8 +6,8 @@ import { LayoutComponent } from '../LayoutComponent'
 import { ResolverComponent } from '../ResolverComponent'
 import styles from './styles.module.sass'
 
-export const GridComponent: GridComponentType = memo(
-    ({ viewTree, children }) =>
+export const GridComponent: GridComponentType = memo(({ viewTree, children }) => {
+    return (
         !isEmpty(viewTree) && (
             <div className={styles.root}>
                 {viewTree.map((viewNode, index) => (
@@ -16,7 +16,8 @@ export const GridComponent: GridComponentType = memo(
                     </LayoutComponent>
                 ))}
             </div>
-        ),
-)
+        )
+    )
+})
 
 GridComponent.displayName = 'GridComponent'

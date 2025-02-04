@@ -20,12 +20,14 @@
     "lint:eslint": "eslint -c ./eslint.config.js .",
     "lint:tsc": "tsc --p ./tsconfig.json --noEmit true --emitDeclarationOnly false",
     "fix": "npm run lint:eslint -- --fix && npm run lint:tsc",
-    "pub": "npm run build & npm publish"
+    "pub:m": "npm run build && npm version minor && npm publish",
+    "pub:p": "npm run build && npm version patch && npm publish"
   },
   "dependencies": {
-    "@form-crafter/core": "^0.1.11",
-    "@form-crafter/themes": "^0.1.0",
-    "@form-crafter/utils": "^0.0.12",
+    "@form-crafter/core": "^0.1.15",
+    "@form-crafter/themes": "^0.2.0",
+    "@form-crafter/utils": "^0.0.14",
+    "@mui/material": "^5.16.14",
     "classnames": "^2.5.1",
     "effector": "^23.2.2",
     "effector-react": "^23.2.1",
@@ -42,7 +44,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "sass": "^1.83.4",
-    "vite": "^5.3.1",
+    "vite": "^6.0.5",
     "vite-plugin-dts": "^4.5.0"
   },
   "prettier": "@form-crafter/dev-configs/dist/prettier.json"
