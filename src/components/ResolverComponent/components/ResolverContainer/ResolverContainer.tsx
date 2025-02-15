@@ -11,8 +11,6 @@ export const ResolverContainer: ResolverComponentType = memo(({ id, rowId }) => 
 
     const onChangeProperties = useChangePropertiesHandler<'container'>(id)
 
-    console.log('rerender')
-
     const Component = useDisplayComponent<'container'>(id)
 
     return (
