@@ -1,3 +1,4 @@
+import { isNull } from '@form-crafter/utils'
 import { createContext, FC, PropsWithChildren, useContext, useRef } from 'react'
 
 import { RootServices } from '_services/types'
@@ -15,7 +16,12 @@ export const GeneratorProvider: FC<PropsWithChildren<StoreContext>> = ({ service
     return <Provider value={value.current}>{children}</Provider>
 }
 
-export const useGenerator = () => {
+export const useGeneratorContext = () => {
     const data = useContext(generatorContext)
-    return data!
+
+    if (isNull(data)) {
+        throw new Error('GeneratorContext not provided')
+    }
+
+    return data
 }

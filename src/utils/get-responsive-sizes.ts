@@ -1,8 +1,6 @@
-import { ViewNode } from '@form-crafter/core'
+import { ViewComponentLayout } from '@form-crafter/core'
 
-type Col = ViewNode['layout']['col']
-
-export const getResponsiveLayoutSizes = (col: Col): Required<Col> => {
+export const getResponsiveLayoutSizes = (col: ViewComponentLayout['col']): Required<ViewComponentLayout['col']> => {
     const { default: def, xxl, xl, lg, md, sm } = col
     return {
         default: def,

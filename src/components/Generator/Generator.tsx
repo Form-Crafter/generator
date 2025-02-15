@@ -1,16 +1,17 @@
+import { isNotEmpty } from '@form-crafter/utils'
 import { FC, FormEvent, memo, useCallback } from 'react'
 
-import { GridComponent } from '_components/GridComponent'
-import { useGenerator } from '_contexts'
-import { useCurrentView } from '_hooks'
+import { RowsList } from '_components/RowsList'
+import { useGeneratorContext } from '_contexts'
+import { useRootViewComponent } from '_hooks'
 
 import { useGeneratorStylesVars } from './hooks'
 import styles from './styles.module.sass'
 
 export const Generator: FC = memo(() => {
-    const { services } = useGenerator()
+    const { services } = useGeneratorContext()
 
-    const viewTree = useCurrentView()
+    const { rows } = useRootViewComponent()
 
     const stylesVars = useGeneratorStylesVars()
 
@@ -24,7 +25,7 @@ export const Generator: FC = memo(() => {
 
     return (
         <form onSubmit={handleSubmit} className={styles.root} style={stylesVars}>
-            <GridComponent viewTree={viewTree} />
+            {isNotEmpty(rows) && <RowsList rows={rows} />}
         </form>
     )
 })

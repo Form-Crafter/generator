@@ -1,16 +1,17 @@
-import { ComponentId } from '@form-crafter/core'
+import { ComponentMeta, ComponentType, EntityId } from '@form-crafter/core'
 import { useStoreMap } from 'effector-react'
+import {} from 'react'
 
-import { useGenerator } from '_contexts'
+import { useGeneratorContext } from '_contexts'
 
-export const useComponentMeta = (id: ComponentId) => {
-    const { services } = useGenerator()
+export const useComponentMeta = <T extends ComponentType = ComponentType>(id: EntityId) => {
+    const { services } = useGeneratorContext()
 
     const meta = useStoreMap({
-        store: services.schemaService.metaService.$componentsMeta,
+        store: services.componentsSchemasService.$schemas,
         keys: [id],
-        fn: (obj, [id]) => obj[id],
+        fn: (data, [id]) => data[id].meta,
     })
 
-    return meta
+    return meta as ComponentMeta<T>
 }

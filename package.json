@@ -24,9 +24,9 @@
     "pub:p": "npm run build && npm version patch && npm publish"
   },
   "dependencies": {
-    "@form-crafter/core": "^0.1.15",
-    "@form-crafter/themes": "^0.2.0",
-    "@form-crafter/utils": "^0.0.14",
+    "@form-crafter/core": "^0.1.28",
+    "@form-crafter/themes": "^0.2.3",
+    "@form-crafter/utils": "^0.0.15",
     "@mui/material": "^5.16.14",
     "classnames": "^2.5.1",
     "effector": "^23.2.2",

@@ -1,13 +1,14 @@
-import { ComponentId, useFormCrafter } from '@form-crafter/core'
-import { useMemo } from 'react'
+import { EntityId, ViewComponent } from '@form-crafter/core'
+import { useStoreMap } from 'effector-react'
 
-import { useComponentMeta } from './useComponentMeta'
+import { useGeneratorContext } from '_contexts'
 
-export const useViewComponent = (id: ComponentId) => {
-    const meta = useComponentMeta(id)
-    const { theme, PlaceholderComponent } = useFormCrafter()
+export const useViewComponent = (id: EntityId): ViewComponent => {
+    const { services } = useGeneratorContext()
 
-    const module = useMemo(() => theme.find(({ name }) => name === meta.name), [theme, meta])
-
-    return module?.Component || PlaceholderComponent
+    return useStoreMap({
+        store: services.viewsService.currentView,
+        keys: [id],
+        fn: ({ components }, [id]) => components[id],
+    })
 }

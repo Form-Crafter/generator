@@ -1,13 +1,12 @@
-import { ViewNode } from '@form-crafter/core'
-import cn from 'classnames'
+import { EntityId, ViewComponentLayout } from '@form-crafter/core'
 import { FC, memo, PropsWithChildren } from 'react'
 
-import { useIsSomeContainerComponent } from '_hooks'
+import { useViewComponentLayout } from '_hooks'
 import { getResponsiveLayoutSizes, getStyles } from '_utils'
 
 import styles from './styles.module.sass'
 
-const getStyleVariables = (col: ViewNode['layout']['col']) => {
+const getStyleVariables = ({ col }: ViewComponentLayout) => {
     const finalCol = getResponsiveLayoutSizes(col)
     return getStyles({
         '--colDefault': finalCol.default,
@@ -19,24 +18,17 @@ const getStyleVariables = (col: ViewNode['layout']['col']) => {
     })
 }
 
-type Props = PropsWithChildren<
-    Pick<ViewNode, 'layout'> & {
-        id: ViewNode['componentId']
-    }
->
+type Props = PropsWithChildren<{
+    id: EntityId
+}>
 
-export const LayoutComponent: FC<Props> = memo(({ id, layout, children }) => {
-    const isSomeContainerComponent = useIsSomeContainerComponent(id)
+export const LayoutComponent: FC<Props> = memo(({ id, children }) => {
+    const layout = useViewComponentLayout(id)
 
-    const style = getStyleVariables(layout.col)
+    const style = getStyleVariables(layout)
 
     return (
-        <div
-            className={cn(styles.root, {
-                [styles.withoutVerticalGap]: isSomeContainerComponent,
-            })}
-            style={style}
-        >
+        <div className={styles.root} style={style}>
             {children}
         </div>
     )

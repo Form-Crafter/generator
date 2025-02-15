@@ -1,9 +1,10 @@
+import { SchemaLayout } from '@form-crafter/core'
 import { useStoreMap } from 'effector-react'
 
-import { useGenerator } from '_contexts'
+import { useGeneratorContext } from '_contexts'
 
-export const useGeneratorLayout = () => {
-    const { services } = useGenerator()
+export const useGeneratorLayout = (): Required<SchemaLayout> => {
+    const { services } = useGeneratorContext()
 
     return useStoreMap({
         store: services.schemaService.$schema,

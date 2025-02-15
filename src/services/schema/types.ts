@@ -1,21 +1,12 @@
-import { Schema } from '@form-crafter/core'
+import { Schema, SchemaLayout } from '@form-crafter/core'
 import { StoreWritable } from 'effector'
 
-import { MetaService } from './meta/types'
-import { PropertiesService } from './properties/types'
-import { RelationsService } from './relations/types'
-import { ValidationsService } from './validations/types'
-import { ViewsService } from './views/types'
+export type SchemaStore = {
+    layout: Required<SchemaLayout>
+}
 
 export type SchemaService = {
-    $schema: StoreWritable<Schema>
-    propertiesService: PropertiesService
-    metaService: MetaService
-    viewsService: ViewsService
-    relationsService: RelationsService
-    validationsService: ValidationsService
+    $schema: StoreWritable<SchemaStore>
 }
 
-export type SchemaServiceParams = {
-    schema?: Schema
-}
+export type SchemaServiceParams = Pick<Schema, 'layout'> & {}

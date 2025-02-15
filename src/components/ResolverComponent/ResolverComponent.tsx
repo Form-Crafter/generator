@@ -1,60 +1,31 @@
-import {
-    BaseComponentProps,
-    ComponentSchema,
-    ContainerComponentProps,
-    DynamicContainerComponentProps,
-    ResolverComponent as ResolverComponentType,
-} from '@form-crafter/core'
-import { SomeObject } from '@form-crafter/utils'
-import { useUnit } from 'effector-react'
-import { FC, memo, useCallback } from 'react'
+import { ComponentType } from '@form-crafter/core'
+import { memo } from 'react'
 
-import { useGenerator } from '_contexts'
-import { useComponentMeta, useComponentProperties, useViewComponent } from '_hooks'
+import { useComponentMeta, useHasDisplayComponent, useIsHiddenComponent } from '_hooks'
 
-import { GridComponent } from '../GridComponent'
+import { ResolverBase } from './components/ResolverBase'
+import { ResolverContainer } from './components/ResolverContainer'
+import { ResolverDynamicContainer } from './components/ResolverDynamicContainer'
+import { ResolverComponentType } from './types'
 
-export const ResolverComponent: ResolverComponentType = memo(({ componentId: id, children, ...extraProps }) => {
-    const { services } = useGenerator()
-    const updateComponentPropertiesEvent = useUnit(services.schemaService.propertiesService.updateComponentPropertiesEvent)
+const resolverByType: Record<ComponentType, ResolverComponentType> = {
+    base: ResolverBase,
+    container: ResolverContainer,
+    'dynamic-container': ResolverDynamicContainer,
+}
 
-    const Component = useViewComponent(id) as FC<any>
-    const meta = useComponentMeta(id)
-    const properties = useComponentProperties(id)
+export const ResolverComponent: ResolverComponentType = memo(({ id, rowId }) => {
+    const { type } = useComponentMeta(id)
+    const isHidden = useIsHiddenComponent(id)
 
-    const onChangeProperties = useCallback(
-        (data: Partial<ComponentSchema['properties']>) => updateComponentPropertiesEvent({ id, data }),
-        [id, updateComponentPropertiesEvent],
-    )
+    const Resolver = resolverByType[type]
+    const [hasComponent, PlaceholderComponent] = useHasDisplayComponent(id)
 
-    const finalProps = (() => {
-        switch (meta.type) {
-            case 'base':
-                return ((params: BaseComponentProps<SomeObject>) => params)({ meta, properties, onChangeProperties })
-            case 'container':
-                return ((params: ContainerComponentProps<SomeObject>) => params)({
-                    meta,
-                    properties,
-                    GridComponent,
-                    ResolverComponent,
-                    children,
-                    onChangeProperties,
-                })
-            case 'dynamic-container':
-                return ((params: DynamicContainerComponentProps<SomeObject>) => params)({
-                    meta,
-                    properties,
-                    GridComponent,
-                    ResolverComponent,
-                    children,
-                    onChangeProperties,
-                    onAddGroup: () => console.log('onAddGroup'),
-                    onRemoveGroup: () => console.log('onRemoveGroup'),
-                })
-        }
-    })()
+    if (isHidden) {
+        return null
+    }
 
-    return <Component {...extraProps} {...finalProps} />
+    return hasComponent ? <Resolver id={id} rowId={rowId} /> : <PlaceholderComponent />
 })
 
 ResolverComponent.displayName = 'ResolverComponent'

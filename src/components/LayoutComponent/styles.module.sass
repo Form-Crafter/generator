@@ -8,13 +8,8 @@
   @media (max-width: $breakpoint)
     padding: 0 calc(var(--#{$var-name}) / 2)
 
-@mixin responsiveVerticalGap($breakpoint, $var-name)
-  @media (max-width: $breakpoint)
-    margin: 0 0 var(--#{$var-name})
-
 .root
   flex: 0 0 calc(var(--colDefault) * (100% / 24)),
-  margin: 0 0 var(--schemaLayoutRowsSpanDefault),
   padding: 0 calc(var(--schemaLayoutColsSpanDefault) / 2),
 
   +responsiveFlexItem($breakpointXxl, 'colXxl')
@@ -28,13 +23,3 @@
   +responsiveHorizontalGap($breakpointLg, 'schemaLayoutColsSpanLg')
   +responsiveHorizontalGap($breakpointMd, 'schemaLayoutColsSpanMd')
   +responsiveHorizontalGap($breakpointSm, 'schemaLayoutColsSpanSm')
-
-  +responsiveVerticalGap($breakpointXxl, 'schemaLayoutRowsSpanXxl')
-  +responsiveVerticalGap($breakpointXl, 'schemaLayoutRowsSpanXl')
-  +responsiveVerticalGap($breakpointLg, 'schemaLayoutRowsSpanLg')
-  +responsiveVerticalGap($breakpointMd, 'schemaLayoutRowsSpanMd')
-  +responsiveVerticalGap($breakpointSm, 'schemaLayoutRowsSpanSm')
-
-.withoutVerticalGap
-  margin: 0
-  
