@@ -16,7 +16,7 @@ export const ResolverBase: ResolverComponentType = memo(({ id, rowId }) => {
 
     return (
         <LayoutComponent id={id}>
-            <Component parentId={parentId} rowId={rowId} meta={meta} properties={properties} onChangeProperties={onChangeProperties} />
+            <Component id={id} parentId={parentId} rowId={rowId} meta={meta} properties={properties} onChangeProperties={onChangeProperties} />
         </LayoutComponent>
     )
 })

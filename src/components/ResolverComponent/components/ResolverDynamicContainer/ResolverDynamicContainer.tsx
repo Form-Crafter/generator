@@ -22,6 +22,7 @@ export const ResolverDynamicContainer: ResolverComponentType = memo(({ id, rowId
             <DynamicContainerProvider {...events}>
                 <Component
                     {...events}
+                    id={id}
                     parentId={parentId}
                     rowId={rowId}
                     meta={meta}
