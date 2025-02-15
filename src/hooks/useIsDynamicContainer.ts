@@ -1,9 +1,9 @@
-import { EntityId } from '@form-crafter/core'
+import { EntityId, rootComponentId } from '@form-crafter/core'
 
 import { useComponentMeta } from './useComponentMeta'
 
 export const useIsDynamicContainer = (id: EntityId): boolean => {
-    const { type } = useComponentMeta(id)
+    const meta = useComponentMeta(id)
 
-    return type === 'dynamic-container'
+    return id !== rootComponentId && meta.type === 'dynamic-container'
 }

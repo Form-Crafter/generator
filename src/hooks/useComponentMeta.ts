@@ -1,17 +1,22 @@
 import { ComponentMeta, ComponentType, EntityId } from '@form-crafter/core'
+import { isEmpty, isNotEmpty } from '@form-crafter/utils'
 import { useStoreMap } from 'effector-react'
 import {} from 'react'
 
 import { useGeneratorContext } from '_contexts'
 
-export const useComponentMeta = <T extends ComponentType = ComponentType>(id: EntityId) => {
+export const useComponentMeta = <T extends ComponentType = ComponentType>(id: EntityId): ComponentMeta<T> => {
     const { services } = useGeneratorContext()
 
     const meta = useStoreMap({
         store: services.componentsSchemasService.$schemas,
         keys: [id],
-        fn: (data, [id]) => data[id].meta,
+        fn: (data, [id]) => (isNotEmpty(data[id]) ? (data[id].meta as ComponentMeta<T>) : null),
     })
 
-    return meta as ComponentMeta<T>
+    if (isEmpty(meta)) {
+        throw new Error(`Missing meta for component ${id}`)
+    }
+
+    return meta
 }
